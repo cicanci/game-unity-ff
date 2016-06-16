@@ -41,10 +41,6 @@ Material:
         first:
           name: _EmissionLM
         second: 0
-      data:
-        first:
-          name: _Emission
-        second: 1
     m_Colors:
       data:
         first:
