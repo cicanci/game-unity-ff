@@ -3246,10 +3246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2061e2e1c885f489b8be95f64daa12eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPosition: {x: 0, y: 10, z: 25}
-  bulletSpeed: 1000
+  bulletPosition: {fileID: 714657066}
+  bulletSpeed: 10000
   bulletPrefab: {fileID: 188826, guid: 92f3ce7dd005147b49f20fd87604adff, type: 2}
-  spaceshipSpeed: 20
+  spaceshipSpeed: 10
+  spaceshipMovementSpeed: 50
+  spaceshipRotationSpeed: 25
 --- !u!4 &733370549 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 3681543e5b0f59742b73073cb379cdc6, type: 2}
