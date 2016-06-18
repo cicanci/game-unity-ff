@@ -23,8 +23,22 @@ namespace Playground
             float h = Input.GetAxis("Horizontal") * Time.deltaTime * spaceshipMovementSpeed;
             float v = Input.GetAxis("Vertical") * Time.deltaTime * spaceshipMovementSpeed;
 
-            transform.Translate(new Vector3(h, v, 0f));
+            spaceshipMovement(h, v);
+            spaceshipRotation(h, v);
+            
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                spaceshipShoot();
+            }
+        }
 
+        void spaceshipMovement(float h, float v)
+        {
+            transform.Translate(new Vector3(h, v, 0f));
+        }
+
+        void spaceshipRotation(float h, float v)
+        {
             if (h > 0)
             {
                 transform.Rotate(Vector3.forward * Time.deltaTime * spaceshipRotationSpeed);
@@ -35,17 +49,23 @@ namespace Playground
             }
             else
             {
-                transform.Rotate(Vector3.zero);
+                if (transform.rotation.z + Time.deltaTime < 0)
+                {
+                    transform.Rotate(Vector3.forward * Time.deltaTime * spaceshipRotationSpeed);
+                }
+                else if (transform.rotation.z - Time.deltaTime > 0)
+                {
+                    transform.Rotate(Vector3.back * Time.deltaTime * spaceshipRotationSpeed);
+                }
             }
+        }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                GameObject bullet = Instantiate(bulletPrefab, bulletPosition.localPosition, transform.rotation) as GameObject;
-                Rigidbody shot = bullet.GetComponent<Rigidbody>();
-                shot.AddForce(transform.forward * bulletSpeed);
-
-                //Destroy(bullet, 3);
-            }
+        void spaceshipShoot()
+        {
+            GameObject bullet = Instantiate(bulletPrefab, bulletPosition.localPosition, transform.rotation) as GameObject;
+            Rigidbody shot = bullet.GetComponent<Rigidbody>();
+            shot.AddForce(transform.forward * bulletSpeed);
+            Destroy(bullet, 3);
         }
     }
 
