@@ -31,7 +31,7 @@ namespace Playground
             spaceshipRotation(h, v);
             cameraMovement();
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 spaceshipShoot();
             }
