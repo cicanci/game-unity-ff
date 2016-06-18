@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 namespace Playground
 {
@@ -12,10 +13,13 @@ namespace Playground
         public float spaceshipSpeed;
         public float spaceshipMovementSpeed;
         public float spaceshipRotationSpeed;
+        public GameObject spaceshipCamera;
+        private Vector3 cameraPosition;
 
         void Start()
         {
             Debug.LogWarning("Playground::TestSpaceship script is in use!");
+            cameraPosition = spaceshipCamera.transform.localPosition;
         }
 
         void Update()
@@ -25,16 +29,22 @@ namespace Playground
 
             spaceshipMovement(h, v);
             spaceshipRotation(h, v);
-            
+            cameraMovement();
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 spaceshipShoot();
             }
         }
 
+        private void cameraMovement()
+        {
+            spaceshipCamera.transform.localPosition = new Vector3(cameraPosition.x, cameraPosition.y, cameraPosition.z + transform.localPosition.z);
+        }
+
         void spaceshipMovement(float h, float v)
         {
-            transform.Translate(new Vector3(h, v, 0f));
+            transform.Translate(new Vector3(h, v, Time.deltaTime * spaceshipSpeed));
         }
 
         void spaceshipRotation(float h, float v)

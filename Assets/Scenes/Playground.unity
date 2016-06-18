@@ -3249,9 +3249,10 @@ MonoBehaviour:
   bulletPosition: {fileID: 714657066}
   bulletSpeed: 10000
   bulletPrefab: {fileID: 188826, guid: 92f3ce7dd005147b49f20fd87604adff, type: 2}
-  spaceshipSpeed: 10
+  spaceshipSpeed: 100
   spaceshipMovementSpeed: 50
   spaceshipRotationSpeed: 25
+  spaceshipCamera: {fileID: 948200490}
 --- !u!4 &733370549 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 3681543e5b0f59742b73073cb379cdc6, type: 2}
