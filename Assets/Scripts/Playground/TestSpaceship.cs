@@ -75,7 +75,7 @@ namespace Playground
             GameObject bullet = Instantiate(bulletPrefab, bulletPosition.localPosition, transform.rotation) as GameObject;
             Rigidbody shot = bullet.GetComponent<Rigidbody>();
             shot.AddForce(transform.forward * bulletSpeed);
-            Destroy(bullet, 3);
+            Destroy(bullet, 10);
         }
     }
 
