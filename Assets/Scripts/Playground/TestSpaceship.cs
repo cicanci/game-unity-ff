@@ -10,6 +10,7 @@ namespace Playground
         public float bulletSpeed;
         public GameObject bulletPrefab;
 
+		public Vector2 spaceshipScreenLimit;
         public float spaceshipSpeed;
         public float spaceshipMovementSpeed;
         public float spaceshipRotationSpeed;
@@ -31,7 +32,7 @@ namespace Playground
             spaceshipRotation(h, v);
             cameraMovement();
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+			if (Input.GetKeyDown(KeyCode.Space))
             {
                 spaceshipShoot();
             }
@@ -44,7 +45,31 @@ namespace Playground
 
         void spaceshipMovement(float h, float v)
         {
-            transform.Translate(new Vector3(h, v, Time.deltaTime * spaceshipSpeed));
+			Vector3 position = transform.localPosition;
+			Vector3 translate = new Vector3(0, 0, Time.deltaTime * spaceshipSpeed);
+
+			if (Math.Abs(position.x + h) < spaceshipScreenLimit.x)
+			{
+				translate.x = h;
+			}
+
+			if ((position.y + v > 0) && (position.y + v < spaceshipScreenLimit.y))
+			{
+				translate.y = v;
+			}
+
+			// Prevent that the spaceship got stucked in the screen
+			if (Math.Abs(position.x) > spaceshipScreenLimit.x)
+			{
+				translate.x = -h;
+			}
+
+			if ((position.y < 0) || (position.y > spaceshipScreenLimit.y))
+			{
+				translate.y = -v;
+			}
+
+			transform.Translate(translate);
         }
 
         void spaceshipRotation(float h, float v)
