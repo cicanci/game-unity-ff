@@ -6,65 +6,69 @@ namespace Playground
 {
     public class TestSpaceship : MonoBehaviour
     {
-        public Transform bulletPosition;
-        public float bulletSpeed;
-        public GameObject bulletPrefab;
+		public Vector2 screenLimit;
+        public float speed;
+        public float movementSpeed;
+        public float rotationSpeed;
 
-		public Vector2 spaceshipScreenLimit;
-        public float spaceshipSpeed;
-        public float spaceshipMovementSpeed;
-        public float spaceshipRotationSpeed;
-        public GameObject spaceshipCamera;
+        public Boolean cameraFollow;
+        public GameObject mainCamera;
+        public TestBullet bullet;
+        
         private Vector3 cameraPosition;
 
         void Start()
         {
             Debug.LogWarning("Playground::TestSpaceship script is in use!");
-            cameraPosition = spaceshipCamera.transform.localPosition;
+            cameraPosition = mainCamera.transform.localPosition;
         }
 
         void Update()
         {
-            float h = Input.GetAxis("Horizontal") * Time.deltaTime * spaceshipMovementSpeed;
-            float v = Input.GetAxis("Vertical") * Time.deltaTime * spaceshipMovementSpeed;
+            float h = Input.GetAxis("Horizontal") * Time.deltaTime * movementSpeed;
+            float v = Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed;
 
             spaceshipMovement(h, v);
             spaceshipRotation(h, v);
-            cameraMovement();
 
-			if (Input.GetKeyDown(KeyCode.Space))
+            if (cameraFollow)
             {
-                spaceshipShoot();
+                cameraMovement();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                bullet.shoot(speed);
             }
         }
 
         private void cameraMovement()
         {
-            spaceshipCamera.transform.localPosition = new Vector3(cameraPosition.x, cameraPosition.y, cameraPosition.z + transform.localPosition.z);
+            mainCamera.transform.localPosition = new Vector3(cameraPosition.x, cameraPosition.y, cameraPosition.z + transform.localPosition.z);
         }
 
         void spaceshipMovement(float h, float v)
         {
 			Vector3 position = transform.localPosition;
-			Vector3 translate = new Vector3(0, 0, Time.deltaTime * spaceshipSpeed);
+			Vector3 translate = new Vector3(0, 0, Time.deltaTime * speed);
 
-			if (Math.Abs(position.x + h) < spaceshipScreenLimit.x)
+			if (Math.Abs(position.x + h) < screenLimit.x)
 			{
 				translate.x = h;
 			}
 
-			if ((position.y + v > 0) && (position.y + v < spaceshipScreenLimit.y))
+			if ((position.y + v > 0) && (position.y + v < screenLimit.y))
 			{
 				translate.y = v;
 			}
 
 			// Prevent that the spaceship got stucked in the screen
-			if (Math.Abs(position.x) > spaceshipScreenLimit.x)
+			if (Math.Abs(position.x) > screenLimit.x)
 			{
 				translate.x = -h;
 			}
 
-			if ((position.y < 0) || (position.y > spaceshipScreenLimit.y))
+			if ((position.y < 0) || (position.y > screenLimit.y))
 			{
 				translate.y = -v;
 			}
@@ -76,31 +80,23 @@ namespace Playground
         {
             if (h > 0)
             {
-                transform.Rotate(Vector3.forward * Time.deltaTime * spaceshipRotationSpeed);
+                transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
             }
             else if (h < 0)
             {
-                transform.Rotate(Vector3.back * Time.deltaTime * spaceshipRotationSpeed);
+                transform.Rotate(Vector3.back * Time.deltaTime * rotationSpeed);
             }
             else
             {
                 if (transform.rotation.z + Time.deltaTime < 0)
                 {
-                    transform.Rotate(Vector3.forward * Time.deltaTime * spaceshipRotationSpeed);
+                    transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
                 }
                 else if (transform.rotation.z - Time.deltaTime > 0)
                 {
-                    transform.Rotate(Vector3.back * Time.deltaTime * spaceshipRotationSpeed);
+                    transform.Rotate(Vector3.back * Time.deltaTime * rotationSpeed);
                 }
             }
-        }
-
-        void spaceshipShoot()
-        {
-            GameObject bullet = Instantiate(bulletPrefab, bulletPosition.localPosition, transform.rotation) as GameObject;
-            Rigidbody shot = bullet.GetComponent<Rigidbody>();
-            shot.AddForce(transform.forward * bulletSpeed);
-            Destroy(bullet, 10);
         }
     }
 
