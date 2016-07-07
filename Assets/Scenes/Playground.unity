@@ -591,29 +591,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 3681543e5b0f59742b73073cb379cdc6, type: 2}
   m_PrefabInternal: {fileID: 648541177}
---- !u!1 &714657065 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 104970, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}
-  m_PrefabInternal: {fileID: 1647416542}
---- !u!4 &714657066 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 446840, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}
-  m_PrefabInternal: {fileID: 1647416542}
---- !u!114 &714657067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 714657065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5130d65d0404209469c55682c924ed22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPosition: {fileID: 714657066}
-  bulletSpeed: 100
-  bulletTime: 5
-  bulletPrefab: {fileID: 188826, guid: 92f3ce7dd005147b49f20fd87604adff, type: 2}
 --- !u!4 &733370549 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 3681543e5b0f59742b73073cb379cdc6, type: 2}
@@ -1262,10 +1239,6 @@ Prefab:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 948200490}
-    - target: {fileID: 11462452, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 714657067}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}
   m_IsPrefabParent: 0

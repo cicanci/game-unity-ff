@@ -13,7 +13,10 @@ namespace Playground
 
         public Boolean cameraFollow;
         public GameObject mainCamera;
-        public TestBullet bullet;
+
+		public GameObject bulletPrefab;
+		public float bulletSpeed;
+		public float bulletTime;
         
         private Vector3 cameraPosition;
 
@@ -38,7 +41,7 @@ namespace Playground
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                bullet.shoot(speed);
+                shoot();
             }
         }
 
@@ -98,6 +101,14 @@ namespace Playground
                 }
             }
         }
+
+		void shoot()
+		{
+			GameObject bullet = Instantiate(bulletPrefab, transform.localPosition, transform.rotation) as GameObject;
+			Rigidbody shot = bullet.GetComponent<Rigidbody>();
+			shot.AddForce(transform.forward * bulletSpeed * speed);
+			Destroy(bullet, bulletTime);
+		}
     }
 
 }

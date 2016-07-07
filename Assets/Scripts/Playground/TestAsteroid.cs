@@ -17,7 +17,7 @@ namespace Playground
                 }
 
                 Destroy(gameObject);
-                //Destroy(collision.collider.gameObject);
+                Destroy(collision.collider.gameObject);
             }
         }
     }
