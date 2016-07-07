@@ -7,6 +7,11 @@ namespace Playground
     {
         public GameObject modelDestroyed;
 
+		void Start()
+		{
+			Debug.LogWarning("Playground::TestAsteroid script is in use!");
+		}
+
         void OnCollisionEnter(Collision collision)
         {
             if (collision.relativeVelocity.magnitude > 2)
