@@ -21,7 +21,7 @@ namespace Playground
                     Instantiate(modelDestroyed, transform.position, transform.rotation);
                 }
 
-                Destroy(gameObject);
+                Destroy(gameObject, 0.1f);
                 Destroy(collision.collider.gameObject);
             }
         }

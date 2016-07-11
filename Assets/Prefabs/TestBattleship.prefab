@@ -228,14 +228,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2061e2e1c885f489b8be95f64daa12eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenLimit: {x: 30, y: 40}
+  screenLimit: {x: 100, y: 100}
   speed: 150
   movementSpeed: 100
   rotationSpeed: 50
   cameraFollow: 1
   mainCamera: {fileID: 0}
   bulletPrefab: {fileID: 188826, guid: 92f3ce7dd005147b49f20fd87604adff, type: 2}
-  bulletSpeed: 100
+  bulletSpeed: 150
   bulletTime: 5
 --- !u!198 &19819940
 ParticleSystem:
