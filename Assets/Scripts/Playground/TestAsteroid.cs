@@ -18,7 +18,8 @@ namespace Playground
             {
                 if (modelDestroyed != null)
                 {
-                    Instantiate(modelDestroyed, transform.position, transform.rotation);
+                    GameObject destroy = Instantiate(modelDestroyed, transform.position, transform.rotation) as GameObject;
+                    Destroy(destroy, 10f);
                 }
 
                 Destroy(gameObject, 0.1f);

@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TestDestroy : MonoBehaviour
+namespace Playground
 {
-    void OnCollisionEnter(Collision collision)
+    public class TestDestroy : MonoBehaviour
     {
-        Rigidbody piece = GetComponent<Rigidbody>();
-        piece.AddForce(collision.impulse);
+        void OnCollisionEnter(Collision collision)
+        {
+            Rigidbody piece = GetComponent<Rigidbody>();
+            piece.AddForce(collision.impulse);
+        }
     }
 }
