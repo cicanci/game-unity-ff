@@ -286,6 +286,14 @@ Prefab:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 948200490}
+    - target: {fileID: 11462452, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}
+      propertyPath: rotationSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462452, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}
+      propertyPath: movementSpeed
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}
   m_IsPrefabParent: 0
