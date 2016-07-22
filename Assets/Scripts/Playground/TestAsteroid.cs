@@ -9,7 +9,7 @@ namespace Playground
 
 		void Start()
 		{
-			Debug.LogWarning("Playground::TestAsteroid script is in use!");
+			Debug.LogWarning("Playground::TestAsteroid script is in use by " + gameObject.name);
 		}
 
         void OnCollisionEnter(Collision collision)
@@ -19,10 +19,13 @@ namespace Playground
                 if (modelDestroyed != null)
                 {
                     GameObject destroy = Instantiate(modelDestroyed, transform.position, transform.rotation) as GameObject;
-                    Destroy(destroy, 10f);
+					// Asteroid destroyed model
+                    //Destroy(destroy, 10f);
                 }
 
+				// Bullet model
                 Destroy(gameObject, 0.1f);
+				// Asteroid model
                 Destroy(collision.collider.gameObject);
             }
         }
