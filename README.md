@@ -13,3 +13,5 @@ This game is currently in development by [me](http://cicanci.com).
 [Astra Starship Fleet Package](https://www.assetstore.unity3d.com/en/#!/content/4392)
 
 [Skybox Volume 2 (Nebula)](https://www.assetstore.unity3d.com/en/#!/content/3392)
+
+[Vast Outer Space](https://www.assetstore.unity3d.com/en/#!/content/38913)
