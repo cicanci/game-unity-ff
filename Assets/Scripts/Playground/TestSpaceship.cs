@@ -46,7 +46,7 @@ namespace Playground
         {
 			float h = Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed;
 			float v = Input.GetAxis("Vertical") * Time.deltaTime * rotationSpeed;
-			transform.Rotate(v, 0, -h);
+			transform.Rotate(-v, 0, -h);
         }
 
 		void spaceshipShoot()
