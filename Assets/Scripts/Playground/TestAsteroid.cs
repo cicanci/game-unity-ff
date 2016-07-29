@@ -20,7 +20,7 @@ namespace Playground
                 {
                     GameObject destroy = Instantiate(modelDestroyed, transform.position, transform.rotation) as GameObject;
 					// Asteroid destroyed model
-                    //Destroy(destroy, 10f);
+                    Destroy(destroy, 10f);
                 }
 
 				// Bullet model
