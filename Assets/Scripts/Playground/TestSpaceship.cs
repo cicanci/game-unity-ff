@@ -14,9 +14,10 @@ namespace Playground
 		public float bulletTime;
 
 		public Vector3 cameraOffset;
-
 		[Range(0.1f, 1f)]
 		public float bias;
+
+		public Sprite crosshair;
 
         void Start()
         {
@@ -57,11 +58,17 @@ namespace Playground
 
 		void spaceshipShoot()
 		{
-			if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))
+			if (Input.GetButtonDown("Fire1"))
 			{
 				GameObject bullet = Instantiate(bulletPrefab, transform.localPosition, transform.rotation) as GameObject;
 				Rigidbody shot = bullet.GetComponent<Rigidbody>();
-				shot.AddForce(transform.forward * bulletSpeed * speed);
+
+				Vector3 center = new Vector3(cameraOffset.x + Screen.width * 0.5f, cameraOffset.y + Screen.height * 0.5f, cameraOffset.z);
+				Ray ray = Camera.main.ScreenPointToRay(center);
+
+				Vector3 target = ray.direction * bulletSpeed * speed;
+				shot.AddForce(target);
+
 				Destroy(bullet, bulletTime);
 			}
 		}
