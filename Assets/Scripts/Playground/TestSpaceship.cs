@@ -8,13 +8,14 @@ namespace Playground
     {
         public float speed;
         public float movementSpeed;
-        public float rotationSpeed;
 
 		public GameObject bulletPrefab;
 		public float bulletSpeed;
 		public float bulletTime;
 
 		public Vector3 cameraOffset;
+
+		[Range(0.1f, 1f)]
 		public float bias;
 
         void Start()
@@ -49,8 +50,8 @@ namespace Playground
 
         void spaceshipRotation()
         {
-			float h = Input.GetAxis("Horizontal") * Time.deltaTime * rotationSpeed;
-			float v = Input.GetAxis("Vertical") * Time.deltaTime * rotationSpeed;
+			float h = Input.GetAxis("Horizontal") * Time.deltaTime * movementSpeed;
+			float v = Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed;
 			transform.Rotate(-v, h, 0);
         }
 

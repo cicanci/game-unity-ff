@@ -229,8 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 150
-  movementSpeed: 100
-  rotationSpeed: 50
+  movementSpeed: 75
   bulletPrefab: {fileID: 188826, guid: 92f3ce7dd005147b49f20fd87604adff, type: 2}
   bulletSpeed: 150
   bulletTime: 5
