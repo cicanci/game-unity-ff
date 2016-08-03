@@ -14,6 +14,9 @@ namespace Playground
 		public float bulletSpeed;
 		public float bulletTime;
 
+		public Vector3 cameraOffset;
+		public float bias;
+
         void Start()
         {
 			Debug.LogWarning("Playground::TestSpaceship script is in use by " + gameObject.name);
@@ -21,20 +24,22 @@ namespace Playground
 
         void Update()
         {
-			cameraMovement();
 			spaceshipMovement();
 			spaceshipRotation();
 			spaceshipShoot();
         }
 
+		void LateUpdate()
+		{
+			cameraMovement();
+		}
+
 		void cameraMovement()
 		{
-			// TODO: Need to remove these magic numbers
-			Vector3 moveCamTo = transform.position - transform.forward * 80 + Vector3.up * 20;
-			float bias = 0.96f;
-
+			Vector3 moveCamTo = transform.position - transform.forward * cameraOffset.z + Vector3.up * cameraOffset.y;
 			Camera.main.transform.position = Camera.main.transform.position * bias + moveCamTo * (1 - bias);
-			Camera.main.transform.LookAt(transform.position + transform.forward * movementSpeed);
+			Camera.main.transform.rotation = transform.rotation;
+//			Camera.main.transform.LookAt(transform.position + transform.forward * movementSpeed);
 		}
 
         void spaceshipMovement()
@@ -60,5 +65,4 @@ namespace Playground
 			}
 		}
     }
-
 }

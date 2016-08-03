@@ -234,6 +234,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 188826, guid: 92f3ce7dd005147b49f20fd87604adff, type: 2}
   bulletSpeed: 150
   bulletTime: 5
+  cameraOffset: {x: 0, y: 20, z: 80}
+  bias: 0.96
 --- !u!198 &19819940
 ParticleSystem:
   m_ObjectHideFlags: 1
