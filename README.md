@@ -6,7 +6,7 @@ This game is currently in development by [me](http://cicanci.com).
 
 [Blender](https://www.blender.org/) 2.77a
 
-[Unity](http://unity3d.com) 5.3.5f1
+[Unity](http://unity3d.com) 5.4.0f3
 
 ## Free assets used
 
