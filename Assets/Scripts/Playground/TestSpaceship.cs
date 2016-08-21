@@ -17,8 +17,6 @@ namespace Playground
 		[Range(0.1f, 1f)]
 		public float bias;
 
-		public Sprite crosshair;
-
         void Start()
         {
 			Debug.LogWarning("Playground::TestSpaceship script is in use by " + gameObject.name);
@@ -28,7 +26,7 @@ namespace Playground
         {
 			spaceshipMovement();
 			spaceshipRotation();
-			spaceshipShoot();
+			//spaceshipShoot();
         }
 
 		void LateUpdate()
@@ -56,21 +54,21 @@ namespace Playground
 			transform.Rotate(-v, h, 0);
         }
 
-		void spaceshipShoot()
-		{
-			if (Input.GetButtonDown("Fire1"))
-			{
-				GameObject bullet = Instantiate(bulletPrefab, transform.localPosition, transform.rotation) as GameObject;
-				Rigidbody shot = bullet.GetComponent<Rigidbody>();
-
-				Vector3 center = new Vector3(cameraOffset.x + Screen.width * 0.5f, cameraOffset.y + Screen.height * 0.5f, cameraOffset.z);
-				Ray ray = Camera.main.ScreenPointToRay(center);
-
-				Vector3 target = ray.direction * bulletSpeed * speed;
-				shot.AddForce(target);
-
-				Destroy(bullet, bulletTime);
-			}
-		}
+//		void spaceshipShoot()
+//		{
+//			if (Input.GetButtonDown("Fire1"))
+//			{
+//				GameObject bullet = Instantiate(bulletPrefab, transform.localPosition, transform.rotation) as GameObject;
+//				Rigidbody shot = bullet.GetComponent<Rigidbody>();
+//
+//				Vector3 center = new Vector3(cameraOffset.x + Screen.width * 0.5f, cameraOffset.y + Screen.height * 0.5f, cameraOffset.z);
+//				Ray ray = Camera.main.ScreenPointToRay(center);
+//
+//				Vector3 target = ray.direction * bulletSpeed * speed;
+//				shot.AddForce(target);
+//
+//				Destroy(bullet, bulletTime);
+//			}
+//		}
     }
 }
