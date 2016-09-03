@@ -14,19 +14,25 @@ namespace Playground
 
         void OnCollisionEnter(Collision collision)
         {
-            if (collision.relativeVelocity.magnitude > 2)
+            //if (collision.relativeVelocity.magnitude > 0)
             {
-                if (modelDestroyed != null)
-                {
-                    GameObject destroy = Instantiate(modelDestroyed, transform.position, transform.rotation) as GameObject;
-					// Asteroid destroyed model
-                    Destroy(destroy, 10f);
-                }
+                DestroyAsteroid(gameObject, collision.impulse);
+            }
+        }
 
-				// Bullet model
-                Destroy(gameObject, 0.1f);
-				// Asteroid model
-                Destroy(collision.collider.gameObject);
+        public void DestroyAsteroid(GameObject asteroid, Vector3 force)
+        {
+            // Asteroid normal model
+            Destroy(asteroid);
+
+            if (modelDestroyed != null)
+            {
+                GameObject destroy = Instantiate(modelDestroyed, transform.position, transform.rotation) as GameObject;
+
+                Rigidbody piece = destroy.GetComponentInChildren<Rigidbody>();
+                piece.velocity = force;
+
+                Destroy(destroy, 10f);
             }
         }
     }

@@ -10,10 +10,10 @@ namespace Playground
 			Debug.LogWarning("Playground::TestDestroy script is in use by " + gameObject.name);
 		}
 
-        void OnCollisionEnter(Collision collision)
-        {
-            Rigidbody piece = GetComponent<Rigidbody>();
-            piece.AddForce(collision.impulse);
-        }
+        //void OnCollisionEnter(Collision collision)
+        //{
+        //    Rigidbody piece = GetComponent<Rigidbody>();
+        //    piece.AddForce(collision.impulse);
+        //}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 
@@ -24,9 +25,15 @@ namespace Playground
 
         void Update()
         {
-			spaceshipMovement();
-			spaceshipRotation();
-			//spaceshipShoot();
+            if (Input.GetButtonDown("Fire2"))
+            {
+                SceneManager.LoadScene(0);
+            }
+            else
+            {
+                spaceshipMovement();
+                spaceshipRotation();
+            }
         }
 
 		void LateUpdate()
@@ -39,7 +46,7 @@ namespace Playground
 			Vector3 moveCamTo = transform.position - transform.forward * cameraOffset.z + Vector3.up * cameraOffset.y;
 			Camera.main.transform.position = Camera.main.transform.position * bias + moveCamTo * (1 - bias);
 			Camera.main.transform.rotation = transform.rotation;
-//			Camera.main.transform.LookAt(transform.position + transform.forward * movementSpeed);
+            //Camera.main.transform.LookAt(transform.position + transform.forward * movementSpeed);
 		}
 
         void spaceshipMovement()
@@ -54,21 +61,8 @@ namespace Playground
 			transform.Rotate(-v, h, 0);
         }
 
-//		void spaceshipShoot()
-//		{
-//			if (Input.GetButtonDown("Fire1"))
-//			{
-//				GameObject bullet = Instantiate(bulletPrefab, transform.localPosition, transform.rotation) as GameObject;
-//				Rigidbody shot = bullet.GetComponent<Rigidbody>();
-//
-//				Vector3 center = new Vector3(cameraOffset.x + Screen.width * 0.5f, cameraOffset.y + Screen.height * 0.5f, cameraOffset.z);
-//				Ray ray = Camera.main.ScreenPointToRay(center);
-//
-//				Vector3 target = ray.direction * bulletSpeed * speed;
-//				shot.AddForce(target);
-//
-//				Destroy(bullet, bulletTime);
-//			}
-//		}
+
+
+
     }
 }
