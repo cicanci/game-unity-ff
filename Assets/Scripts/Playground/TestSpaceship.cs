@@ -33,6 +33,7 @@ namespace Playground
             {
                 spaceshipMovement();
                 spaceshipRotation();
+                //spaceshipShoot();
             }
         }
 
@@ -61,8 +62,21 @@ namespace Playground
 			transform.Rotate(-v, h, 0);
         }
 
+        //void spaceshipShoot()
+        //{
+        //    if (Input.GetButtonDown("Fire1"))
+        //    {
+        //        GameObject bullet = Instantiate(bulletPrefab, transform.localPosition, transform.rotation) as GameObject;
+        //        Rigidbody shot = bullet.GetComponent<Rigidbody>();
 
+        //        Vector3 center = new Vector3(cameraOffset.x + Screen.width * 0.5f, cameraOffset.y + Screen.height * 0.5f, cameraOffset.z);
+        //        Ray ray = Camera.main.ScreenPointToRay(center);
 
+        //        Vector3 target = ray.direction * bulletSpeed * speed;
+        //        shot.AddForce(target);
 
+        //        Destroy(bullet, bulletTime);
+        //    }
+        //}
     }
 }
