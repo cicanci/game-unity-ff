@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TestPlanet : MonoBehaviour
+namespace Playground
 {
-	void Update ()
+    public class TestPlanet : MonoBehaviour
     {
-        transform.Rotate(Vector3.right * Time.deltaTime);
+        void Update()
+        {
+            transform.Rotate(Vector3.right * Time.deltaTime);
+        }
     }
 }
