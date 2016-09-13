@@ -16,6 +16,11 @@ namespace Playground
         public UIType type = UIType.None;
         public bool inverted = false;
 
+        void Start()
+        {
+            Debug.LogWarning("Playground::TestInventory script is in use by " + gameObject.name);
+        }
+
         void Update()
         {
             Vector3 position = Vector3.zero;

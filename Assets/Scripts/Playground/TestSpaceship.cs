@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 
@@ -25,16 +24,9 @@ namespace Playground
 
         void Update()
         {
-            if (Input.GetButtonDown("Fire2"))
-            {
-                SceneManager.LoadScene(0);
-            }
-            else
-            {
-                spaceshipMovement();
-                spaceshipRotation();
-                //spaceshipShoot();
-            }
+            spaceshipMovement();
+            spaceshipRotation();
+            //spaceshipShoot();
         }
 
 		void LateUpdate()

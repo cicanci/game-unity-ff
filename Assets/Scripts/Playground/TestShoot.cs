@@ -30,7 +30,6 @@ namespace Playground
 			fpsCam = Camera.main;
 		}
 
-
 		void Update () 
 		{
 			// Check if the player has pressed the fire button and if enough time has elapsed since they last fired
@@ -89,7 +88,6 @@ namespace Playground
 				}
 			}
 		}
-
 
 		private IEnumerator ShotEffect()
 		{
