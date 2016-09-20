@@ -2354,9 +2354,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f8eda3af0ab9a42916403d914edd79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 50
+  horizontalSpeed: 15
+  verticalSpeed: 10
   type: 0
-  inverted: 1
+  inverted: 0
 --- !u!1 &374540640
 GameObject:
   m_ObjectHideFlags: 0
@@ -3436,9 +3437,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f8eda3af0ab9a42916403d914edd79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  horizontalSpeed: 2
+  verticalSpeed: 1
   type: 1
-  inverted: 0
+  inverted: 1
 --- !u!4 &1152325515
 Transform:
   m_ObjectHideFlags: 0
@@ -6056,9 +6058,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f8eda3af0ab9a42916403d914edd79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 50
+  horizontalSpeed: 15
+  verticalSpeed: 10
   type: 0
-  inverted: 1
+  inverted: 0
 --- !u!1 &1565759559
 GameObject:
   m_ObjectHideFlags: 0
