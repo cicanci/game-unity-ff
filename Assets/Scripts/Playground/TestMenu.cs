@@ -23,21 +23,6 @@ namespace Playground
 			UpdateUI();
         }
 
-        void Update()
-        {
-            if (Input.GetButtonDown("Fire2"))
-            {
-                if (SceneManager.GetActiveScene().name == "Playground")
-                {
-                    SceneManager.LoadScene("PlaygroundUI");
-                }
-                else if (SceneManager.GetActiveScene().name == "PlaygroundUI")
-                {
-                    SceneManager.LoadScene("Playground");
-                }
-            }
-        }
-
 		void UpdateUI() 
 		{
 			if (shipNameLabel != null)
