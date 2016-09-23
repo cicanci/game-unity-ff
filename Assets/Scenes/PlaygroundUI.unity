@@ -6007,10 +6007,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b074cca780d47c78bf5b5f15dc36ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 3cd25eaeb25f84932a06f0acedb2a3dc, type: 3}
+  cursorTextureSmall: {fileID: 2800000, guid: 3cd25eaeb25f84932a06f0acedb2a3dc, type: 3}
+  hotSpotSmall: {x: 32, y: 32}
+  cursorTextureBig: {fileID: 2800000, guid: 770fad0e0345542eb983c1cc657546a1, type: 3}
+  hotSpotBig: {x: 64, y: 64}
   cursorMode: 0
-  hotSpot: {x: 32, y: 32}
-  enableCursor: 1
+  cursorType: 1
 --- !u!4 &1561249611
 Transform:
   m_ObjectHideFlags: 0

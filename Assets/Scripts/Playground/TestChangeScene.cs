@@ -5,18 +5,25 @@ using System.Collections;
 
 namespace Playground
 {
+	public enum CursorType
+	{
+		Small, Big, None
+	}
+
 	public class TestChangeScene : MonoBehaviour
 	{
-		public Texture2D cursorTexture;
+		public Texture2D cursorTextureSmall;
+		public Vector2 hotSpotSmall = Vector2.zero;
+		public Texture2D cursorTextureBig;
+		public Vector2 hotSpotBig = Vector2.zero;
 		public CursorMode cursorMode = CursorMode.Auto;
-		public Vector2 hotSpot = Vector2.zero;
-		public bool enableCursor = false;
+		public CursorType cursorType = CursorType.None;
 
 		void Start()
 		{
 			Debug.LogWarning("Playground::TestChangeScene script is in use by " + gameObject.name);
 
-			if (enableCursor)
+			if (cursorType != CursorType.None)
 			{
 				AddCursor();
 			}
@@ -43,7 +50,7 @@ namespace Playground
 
 		void OnMouseEnter() 
 		{
-			if (enableCursor)
+			if (cursorType != CursorType.None)
 			{
 				AddCursor();
 			}
@@ -51,7 +58,7 @@ namespace Playground
 
 		void OnMouseExit() 
 		{
-			if (enableCursor)
+			if (cursorType != CursorType.None)
 			{
 				RemoveCursor();
 			}
@@ -59,7 +66,15 @@ namespace Playground
 
 		private void AddCursor()
 		{
-			Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+			if (cursorType == CursorType.Small)
+			{
+				Cursor.SetCursor(cursorTextureSmall, hotSpotSmall, cursorMode);
+			}
+			else if (cursorType == CursorType.Big)
+			{
+				Cursor.SetCursor(cursorTextureBig, hotSpotBig, cursorMode);
+			}
+
 			Cursor.visible = true;
 		}
 
