@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 
 namespace Playground
 {
@@ -11,12 +10,11 @@ namespace Playground
 
     public class TestInventory : MonoBehaviour
     {
-        [Range(0, 100)]
-        public float horizontalSpeed = 0;
-		[Range(0, 100)]
-		public float verticalSpeed = 0;
+        private float minMovementSpeed = 0.1f;
+
+        public int horizontalSpeed = 0;
+		public int verticalSpeed = 0;
         public UIType type = UIType.None;
-        public bool inverted = false;
 
         void Start()
         {
@@ -25,47 +23,122 @@ namespace Playground
 
         void Update()
         {
-            if (Input.GetAxis("Mouse X") < 0)
+            if (Input.GetAxis("Mouse X") < -minMovementSpeed)
             {
-				StartCoroutine(moveObject(Vector3.left, Time.deltaTime * horizontalSpeed));
+                if (type == UIType.UICanvas)
+                {
+                    if (gameObject.GetComponent<RectTransform>().localPosition.x < 250)
+                    {
+                        gameObject.GetComponent<RectTransform>().Translate(Vector3.right * horizontalSpeed * Time.deltaTime);
+                    }
+                }
+                else if (type == UIType.UIObject)
+                {
+                    if (gameObject.transform.localPosition.x < 9)
+                    {
+                        gameObject.transform.Translate(Vector3.right * horizontalSpeed * Time.deltaTime);
+                    }
+                }
             }
 
-            if (Input.GetAxis("Mouse X") > 0)
+            if (Input.GetAxis("Mouse X") > minMovementSpeed)
             {
-				StartCoroutine(moveObject(Vector3.right, Time.deltaTime * horizontalSpeed));
+                if (type == UIType.UICanvas)
+                {
+                    if (gameObject.GetComponent<RectTransform>().localPosition.x > -250)
+                    {
+                        gameObject.GetComponent<RectTransform>().Translate(Vector3.left * horizontalSpeed * Time.deltaTime);
+                    }
+                }
+                else if (type == UIType.UIObject)
+                {
+                    if (gameObject.transform.localPosition.x > -9)
+                    {
+                        gameObject.transform.Translate(Vector3.left * horizontalSpeed * Time.deltaTime);
+                    }
+                }
             }
 
-            if (Input.GetAxis("Mouse Y") < 0)
+            if (Input.GetAxis("Mouse Y") < -minMovementSpeed)
             {
-				StartCoroutine(moveObject(((inverted) ? Vector3.up : Vector3.down), Time.deltaTime * verticalSpeed));
+                if (type == UIType.UICanvas)
+                {
+                    if (gameObject.GetComponent<RectTransform>().localPosition.y < 80)
+                    {
+                        gameObject.GetComponent<RectTransform>().Translate(Vector3.up * horizontalSpeed * Time.deltaTime);
+                    }
+                }
+                else if (type == UIType.UIObject)
+                {
+                    if (gameObject.transform.localPosition.y < 3)
+                    {
+                        gameObject.transform.Translate(Vector3.up * horizontalSpeed * Time.deltaTime);
+                    }
+                }
             }
 
-            if (Input.GetAxis("Mouse Y") > 0)
+            if (Input.GetAxis("Mouse Y") > minMovementSpeed)
             {
-				StartCoroutine(moveObject(((inverted) ? Vector3.down : Vector3.up), Time.deltaTime * verticalSpeed));
+                if (type == UIType.UICanvas)
+                {
+                    if (gameObject.GetComponent<RectTransform>().localPosition.y > -80)
+                    {
+                        gameObject.GetComponent<RectTransform>().Translate(Vector3.down * horizontalSpeed * Time.deltaTime);
+                    }
+                }
+                else if (type == UIType.UIObject)
+                {
+                    if (gameObject.transform.localPosition.y > -3)
+                    {
+                        gameObject.transform.Translate(Vector3.down * horizontalSpeed * Time.deltaTime);
+                    }
+                }
             }
         }
 
-		IEnumerator moveObject(Vector3 direction, float speed)
-		{
-			Vector3 destination = Vector3.zero;
+        //void Update()
+        //{
+        //    if (Input.GetAxis("Mouse X") < 0)
+        //    {
+        //        StartCoroutine(moveObject(Vector3.left, Time.deltaTime * horizontalSpeed));
+        //    }
 
-			switch (type)
-			{
-			case UIType.UICanvas:
-				gameObject.GetComponent<RectTransform>().Translate(direction * speed);
-				break;
-			case UIType.UIObject:
-				gameObject.transform.Translate(direction * speed);
-				break;
-			case UIType.None:
-				Debug.LogWarning("No UIType set for " + gameObject.name);
-				break;
-			default:
-				break;
-			}
+        //    if (Input.GetAxis("Mouse X") > 0)
+        //    {
+        //        StartCoroutine(moveObject(Vector3.right, Time.deltaTime * horizontalSpeed));
+        //    }
 
-			yield return null;
-		}
+        //    if (Input.GetAxis("Mouse Y") < 0)
+        //    {
+        //        StartCoroutine(moveObject(((inverted) ? Vector3.up : Vector3.down), Time.deltaTime * verticalSpeed));
+        //    }
+
+        //    if (Input.GetAxis("Mouse Y") > 0)
+        //    {
+        //        StartCoroutine(moveObject(((inverted) ? Vector3.down : Vector3.up), Time.deltaTime * verticalSpeed));
+        //    }
+        //}
+
+        //IEnumerator moveObject(Vector3 direction, float speed)
+        //{
+        //	Vector3 destination = Vector3.zero;
+
+        //	switch (type)
+        //	{
+        //	case UIType.UICanvas:
+        //		gameObject.GetComponent<RectTransform>().Translate(direction * speed);
+        //		break;
+        //	case UIType.UIObject:
+        //		gameObject.transform.Translate(direction * speed);
+        //		break;
+        //	case UIType.None:
+        //		Debug.LogWarning("No UIType set for " + gameObject.name);
+        //		break;
+        //	default:
+        //		break;
+        //	}
+
+        //	yield return null;
+        //}
     }
 }

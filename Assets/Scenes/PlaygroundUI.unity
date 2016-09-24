@@ -113,10 +113,10 @@ Transform:
   m_PrefabParentObject: {fileID: 493600, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1530908}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -3.773362e-17}
-  m_LocalPosition: {x: -1.5, y: 1, z: -20}
+  m_LocalRotation: {x: -0.26071674, y: 0.19677883, z: 0.9379241, w: -0.11663347}
+  m_LocalPosition: {x: -11.87, y: 11.3, z: 64.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: -17.910002, y: 325.596, z: -160.541}
   m_Children:
   - {fileID: 1992629372}
   m_Father: {fileID: 1152325515}
@@ -172,7 +172,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
+  randomSeed: -1098752272
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -1884,7 +1884,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedWireframeHidden: 1
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -2445,10 +2445,10 @@ Transform:
   m_PrefabParentObject: {fileID: 485436, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 332597121}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.11167155, y: 0.9340263, z: -0.21451893, w: 0.26288033}
+  m_LocalPosition: {x: 0, y: 4, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: 145, z: -20}
   m_Children: []
   m_Father: {fileID: 1152325515}
   m_RootOrder: 0
@@ -2584,8 +2584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f8eda3af0ab9a42916403d914edd79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 15
-  verticalSpeed: 10
+  horizontalSpeed: 250
+  verticalSpeed: 100
   type: 0
   inverted: 0
 --- !u!1 &374540640
@@ -3071,13 +3071,13 @@ MonoBehaviour:
   shipDefenseSlider: {fileID: 1490004576}
   shipSpeedSlider: {fileID: 178144389}
   shipCargoSlider: {fileID: 546603709}
-  shipName: THE EXPLORER
-  shipClass: Astra Battleship
+  shipName: Imperial Fighter
+  shipClass: Star Empire Ship
   shipLevel: 10
-  shipAttack: 50
-  shipDefense: 40
+  shipAttack: 20
+  shipDefense: 20
   shipSpeed: 30
-  shipCargo: 20
+  shipCargo: 10
 --- !u!4 &694388450
 Transform:
   m_ObjectHideFlags: 0
@@ -3090,7 +3090,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!1 &728621440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3418,7 +3418,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 460240, guid: e47bb2f50258ed841b48fa1eef455833, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 460240, guid: e47bb2f50258ed841b48fa1eef455833, type: 2}
       propertyPath: m_LocalScale.x
@@ -3902,7 +3902,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 34
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 17
@@ -3981,7 +3981,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
 --- !u!1 &1116862436
 GameObject:
   m_ObjectHideFlags: 0
@@ -4043,8 +4043,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f8eda3af0ab9a42916403d914edd79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 2
-  verticalSpeed: 1
+  horizontalSpeed: 10
+  verticalSpeed: 5
   type: 1
   inverted: 1
 --- !u!4 &1152325515
@@ -4053,16 +4053,16 @@ Transform:
   m_PrefabParentObject: {fileID: 446840, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1152325513}
-  m_LocalRotation: {x: -0.11167155, y: 0.9340263, z: -0.21451893, w: 0.26288033}
-  m_LocalPosition: {x: 0, y: 4, z: 50}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 20, y: 145, z: -20}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 332597122}
   - {fileID: 1303116940}
   - {fileID: 1530909}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &1152795221
 GameObject:
   m_ObjectHideFlags: 0
@@ -4150,7 +4150,7 @@ RectTransform:
   m_Children:
   - {fileID: 366505551}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4672,10 +4672,10 @@ Transform:
   m_PrefabParentObject: {fileID: 433792, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1303116939}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -3.773362e-17}
-  m_LocalPosition: {x: 1.5, y: 1, z: -20}
+  m_LocalRotation: {x: -0.26071674, y: 0.19677883, z: 0.9379241, w: -0.11663347}
+  m_LocalPosition: {x: -9.32, y: 12.28, z: 65.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: -17.910002, y: 325.596, z: -160.541}
   m_Children:
   - {fileID: 1904520814}
   m_Father: {fileID: 1152325515}
@@ -4731,7 +4731,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
+  randomSeed: 1405700339
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -6443,7 +6443,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedWireframeHidden: 1
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -7074,7 +7074,7 @@ GameObject:
   - 4: {fileID: 1561249611}
   - 114: {fileID: 1561249610}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: SceneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7783,7 +7783,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
+  randomSeed: 453760643
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -9499,7 +9499,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
 --- !u!1 &1860589291
 GameObject:
   m_ObjectHideFlags: 0
@@ -9803,7 +9803,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
+  randomSeed: 1180043097
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -11500,7 +11500,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedWireframeHidden: 1
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -11603,7 +11603,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
+  randomSeed: 2035397585
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -13300,7 +13300,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedWireframeHidden: 1
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
