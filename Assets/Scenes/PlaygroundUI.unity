@@ -2587,7 +2587,6 @@ MonoBehaviour:
   horizontalSpeed: 250
   verticalSpeed: 100
   type: 0
-  inverted: 0
 --- !u!1 &374540640
 GameObject:
   m_ObjectHideFlags: 0
@@ -4046,7 +4045,6 @@ MonoBehaviour:
   horizontalSpeed: 10
   verticalSpeed: 5
   type: 1
-  inverted: 1
 --- !u!4 &1152325515
 Transform:
   m_ObjectHideFlags: 0
@@ -7095,8 +7093,8 @@ MonoBehaviour:
   hotSpotSmall: {x: 32, y: 32}
   cursorTextureBig: {fileID: 2800000, guid: 770fad0e0345542eb983c1cc657546a1, type: 3}
   hotSpotBig: {x: 64, y: 64}
-  cursorMode: 0
-  cursorType: 1
+  cursorMode: 1
+  cursorType: 0
 --- !u!4 &1561249611
 Transform:
   m_ObjectHideFlags: 0
