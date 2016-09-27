@@ -9,14 +9,26 @@ namespace Playground
 	{
 		public RectTransform inventory;
 
-		private float offsetX = 390;
-		private float offsetY = 268;
-		private int itemPosition = 0;
+		private int offsetX = 390;
+		private int offsetY = 268;
+		private int itemPositionX = 0;
+		private int itemPositionY = 0;
 		private int itemHeight = 109;
+		private int expandWidth = 250;
+
+		void Start()
+		{
+			Debug.LogWarning("Playground::TestItem script is in use by " + gameObject.name);
+		}
 
 		void OnEnable()
 		{
 			Debug.Log("OnEnable");
+		}
+
+		void OnDisable()
+		{
+			Debug.Log("OnDisable");
 		}
 
 		void Update()
@@ -26,9 +38,18 @@ namespace Playground
 
 		public void ShowPanel(int item)
 		{
-			itemPosition = item * itemHeight;
-			UpdatePosition();
+			if (item > 4)
+			{
+				itemPositionX = (offsetX * 2) + expandWidth;
+				itemPositionY = (item - 5) * itemHeight;
+			}
+			else
+			{
+				itemPositionX = 0;
+				itemPositionY = item * itemHeight;
+			}	
 
+			UpdatePosition();
 			gameObject.SetActive(true);
 		}
 
@@ -39,7 +60,7 @@ namespace Playground
 
 		private void UpdatePosition()
 		{
-			Vector2 position = new Vector2(inventory.localPosition.x - offsetX, inventory.localPosition.y + offsetY - itemPosition);
+			Vector2 position = new Vector2(inventory.localPosition.x - offsetX + itemPositionX, inventory.localPosition.y + offsetY - itemPositionY);
 			GetComponent<RectTransform>().localPosition = position;
 		}
 	}
