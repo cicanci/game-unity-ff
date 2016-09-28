@@ -83,5 +83,4 @@ namespace Playground
 			Cursor.visible = false;
 		}
 	}
-
 }

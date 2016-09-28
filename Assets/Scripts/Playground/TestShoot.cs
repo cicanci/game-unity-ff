@@ -4,7 +4,7 @@ using System.Collections;
 namespace Playground
 {
 	public class TestShoot : MonoBehaviour
-    {
+	{
 		public int gunDamage = 1;                                           // Set the number of hitpoints that this gun will take away from shot objects with a health script
 		public float fireRate = 0.25f;                                      // Number in seconds which controls how often the player can fire
 		public float weaponRange = 50f;                                     // Distance in Unity units over which the player can fire
@@ -16,8 +16,8 @@ namespace Playground
 		//private AudioSource gunAudio;                                       // Reference to the audio source which will play our shooting sound effect
 		private LineRenderer laserLine;                                     // Reference to the LineRenderer component which will display our laserline
 		private float nextFire;                                             // Float to store the time the player will be allowed to fire again, after firing
-        
-        void Start () 
+
+		void Start () 
 		{
 			// Get and store a reference to our LineRenderer component
 			laserLine = GetComponent<LineRenderer>();
@@ -49,7 +49,7 @@ namespace Playground
 
 				// Set the start position for our visual effect for our laser to the position of gunEnd
 				laserLine.SetPosition (0, gunEnd.position);
-                
+
 				// Check if our raycast has hit anything
 				if (Physics.Raycast (rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
 				{
@@ -73,13 +73,13 @@ namespace Playground
 						hit.rigidbody.AddForce (-hit.normal * hitForce);
 					}
 
-                    Debug.Log("Pew! Pew!");
+					Debug.Log("Pew! Pew!");
 
-                    TestAsteroid asteroid = hit.collider.gameObject.GetComponent<TestAsteroid>();
-                    if (asteroid != null)
-                    {
-                        asteroid.DestroyAsteroid(hit.collider.gameObject, -hit.normal * hitForce);
-                    }
+					TestAsteroid asteroid = hit.collider.gameObject.GetComponent<TestAsteroid>();
+					if (asteroid != null)
+					{
+						asteroid.DestroyAsteroid(hit.collider.gameObject, -hit.normal * hitForce);
+					}
 				}
 				else
 				{
