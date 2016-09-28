@@ -2260,7 +2260,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -2277,7 +2277,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -2419,7 +2419,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -2436,7 +2436,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -3444,7 +3444,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -3461,7 +3461,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -3702,7 +3702,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -3719,7 +3719,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -3915,7 +3915,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -3932,7 +3932,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -4150,7 +4150,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -4167,7 +4167,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -4509,7 +4509,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -4526,7 +4526,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -4720,8 +4720,8 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -131.02997, y: -181.59999}
-  m_SizeDelta: {x: 270, y: 21.7}
+  m_AnchoredPosition: {x: -144, y: -181.6}
+  m_SizeDelta: {x: 246.8, y: 22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &935986340
 MonoBehaviour:
@@ -5042,7 +5042,7 @@ RectTransform:
   - {fileID: 1761380872}
   - {fileID: 1566958948}
   m_Father: {fileID: 1152795225}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -5109,10 +5109,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1121775601}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa4ccdfc3e1744098a6a4c4ae0c89862, type: 3}
+  m_Script: {fileID: 11500000, guid: 77d4e117a2f83498fbdb7c28ed25e46b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 2051081983}
+  m_Delegates: []
+  delegates: []
 --- !u!1 &1152325513
 GameObject:
   m_ObjectHideFlags: 0
@@ -5244,8 +5245,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 2051081983}
   - {fileID: 1121775602}
+  - {fileID: 2051081983}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
@@ -5695,7 +5696,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -5712,7 +5713,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -8293,7 +8294,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -8310,7 +8311,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -9164,7 +9165,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -9181,7 +9182,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121775606}
+        - m_Target: {fileID: 1834225108}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -9535,6 +9536,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1811194273}
+--- !u!1 &1834225107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1834225109}
+  - 114: {fileID: 1834225108}
+  m_Layer: 0
+  m_Name: InventaryController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1834225108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1834225107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4ccdfc3e1744098a6a4c4ae0c89862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 2051081983}
+  inventoryExpand: {fileID: 1121775601}
+--- !u!4 &1834225109
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1834225107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!1 &1844356076
 GameObject:
   m_ObjectHideFlags: 0
@@ -11493,7 +11536,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -142.63, y: -234.36996}
+  m_AnchoredPosition: {x: -144, y: -234.36996}
   m_SizeDelta: {x: 246.8, y: 83.835}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1860589293
@@ -15616,7 +15659,7 @@ RectTransform:
   - {fileID: 546603708}
   - {fileID: 1810920196}
   m_Father: {fileID: 1152795225}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
