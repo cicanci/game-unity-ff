@@ -13,10 +13,6 @@ namespace Playground
 	public class TestInventory : MonoBehaviour
 	{
 		private float minMovementSpeed = 0.1f;
-		private float amplitude = 2;
-		private float speed = 0.5f;
-		private float tempVal;
-		private Vector3 tempPos;
 
 		public int horizontalSpeed = 0;
 		public int verticalSpeed = 0;
@@ -30,14 +26,6 @@ namespace Playground
 		void Update ()
 		{
 			UpdateMovement ();
-		}
-
-		void LateUpdate ()
-		{
-			if (type == UIType.UIObject) {
-				tempPos.y = tempVal + amplitude * Mathf.Sin (speed * Time.time);
-				transform.position = tempPos;
-			}
 		}
 
 		private void UpdateMovement ()
