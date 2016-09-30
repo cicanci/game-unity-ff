@@ -18,17 +18,17 @@ namespace Playground
 		public int verticalSpeed = 0;
 		public UIType type = UIType.None;
 
-		void Start ()
+		void Start()
 		{
-			Debug.LogWarning ("Playground::TestInventory script is in use by " + gameObject.name);
+			Debug.LogWarning("Playground::TestInventory script is in use by " + gameObject.name);
 		}
 
-		void Update ()
+		void Update()
 		{
-			UpdateMovement ();
+			UpdateMovement();
 		}
 
-		private void UpdateMovement ()
+		private void UpdateMovement()
 		{
 			if (Input.GetAxis ("Mouse X") < -minMovementSpeed) {
 				if (type == UIType.UICanvas) {

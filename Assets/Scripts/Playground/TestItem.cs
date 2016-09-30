@@ -16,10 +16,13 @@ namespace Playground
 		private int itemPositionY = 0;
 		private int itemHeight = 109;
 		private int expandWidth = 250;
+		private TestInventoryExpand expand;
 
 		void Start()
 		{
 			Debug.LogWarning("Playground::TestItem script is in use by " + gameObject.name);
+
+			expand = inventoryExpand.GetComponent<TestInventoryExpand>();
 		}
 
 		void Update()
@@ -41,12 +44,16 @@ namespace Playground
 			}	
 
 			UpdatePosition();
-			inventoryExpand.SetActive(true);
+			expand.ShowPanel();
 		}
 
 		public void HidePanel()
 		{
-
+			Debug.Log("Expanded: " + expand.IsExpanded());
+			if (expand.IsExpanded())
+			{
+//				expand.HidePanel();
+			}
 		}
 
 		private void UpdatePosition()
