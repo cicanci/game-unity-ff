@@ -17,6 +17,7 @@ namespace Playground
         private int itemHeight = 109;
         private int expandWidth = 250;
         private TestInventoryExpand expand;
+        private bool rightColumn = false;
 
         void Start()
         {
@@ -36,12 +37,14 @@ namespace Playground
             {
                 itemPositionX = (offsetX * 2) + expandWidth;
                 itemPositionY = (item - 5) * itemHeight;
+                rightColumn = true;
             }
             else
             {
                 itemPositionX = 0;
                 itemPositionY = item * itemHeight;
-            }    
+                rightColumn = false;
+            }
 
             UpdatePosition();
             expand.ShowPanel();
@@ -49,10 +52,9 @@ namespace Playground
 
         public void HidePanel()
         {
-            Debug.Log("Expanded: " + expand.IsExpanded());
-            if (expand.IsExpanded())
+            if (((Input.GetAxis("Mouse X") < 0) && (rightColumn)) || ((Input.GetAxis("Mouse X") > 0) && (!rightColumn)))
             {
-//                expand.HidePanel();
+                expand.HidePanel();
             }
         }
 
