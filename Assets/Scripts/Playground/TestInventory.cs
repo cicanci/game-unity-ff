@@ -25,27 +25,31 @@ namespace Playground
 
         void Update()
         {
-            UpdateMovement();
+            Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
+            if (screenRect.Contains(Input.mousePosition))
+            {
+                UpdateMovement();
+            }
         }
 
         private void UpdateMovement()
         {
-            if (Input.GetAxis ("Mouse X") < -minMovementSpeed) {
+            if (Input.GetAxis("Mouse X") < -minMovementSpeed) {
                 if (type == UIType.UICanvas) {
-                    if (gameObject.GetComponent<RectTransform> ().localPosition.x < 250) {
-                        gameObject.GetComponent<RectTransform> ().Translate (Vector3.right * horizontalSpeed * Time.deltaTime);
+                    if (gameObject.GetComponent<RectTransform>().localPosition.x < 80) {
+                        gameObject.GetComponent<RectTransform>().Translate(Vector3.right * horizontalSpeed * Time.deltaTime);
                     }
                 } else if (type == UIType.UIObject) {
                     if (gameObject.transform.localPosition.x < 9) {
-                        gameObject.transform.Translate (Vector3.right * horizontalSpeed * Time.deltaTime);
+                        gameObject.transform.Translate(Vector3.right * horizontalSpeed * Time.deltaTime);
                     }
                 }
             }
 
-            if (Input.GetAxis ("Mouse X") > minMovementSpeed) {
+            if (Input.GetAxis("Mouse X") > minMovementSpeed) {
                 if (type == UIType.UICanvas) {
-                    if (gameObject.GetComponent<RectTransform> ().localPosition.x > -250) {
-                        gameObject.GetComponent<RectTransform> ().Translate (Vector3.left * horizontalSpeed * Time.deltaTime);
+                    if (gameObject.GetComponent<RectTransform>().localPosition.x > -80) {
+                        gameObject.GetComponent<RectTransform>().Translate(Vector3.left * horizontalSpeed * Time.deltaTime);
                     }
                 } else if (type == UIType.UIObject) {
                     if (gameObject.transform.localPosition.x > -9) {
@@ -54,26 +58,26 @@ namespace Playground
                 }
             }
 
-            if (Input.GetAxis ("Mouse Y") < -minMovementSpeed) {
+            if (Input.GetAxis("Mouse Y") < -minMovementSpeed) {
                 if (type == UIType.UICanvas) {
-                    if (gameObject.GetComponent<RectTransform> ().localPosition.y < 80) {
-                        gameObject.GetComponent<RectTransform> ().Translate (Vector3.up * horizontalSpeed * Time.deltaTime);
+                    if (gameObject.GetComponent<RectTransform>().localPosition.y < 80) {
+                        gameObject.GetComponent<RectTransform>().Translate(Vector3.up * horizontalSpeed * Time.deltaTime);
                     }
                 } else if (type == UIType.UIObject) {
                     if (gameObject.transform.localPosition.y < 3) {
-                        gameObject.transform.Translate (Vector3.up * horizontalSpeed * Time.deltaTime);
+                        gameObject.transform.Translate(Vector3.up * horizontalSpeed * Time.deltaTime);
                     }
                 }
             }
 
-            if (Input.GetAxis ("Mouse Y") > minMovementSpeed) {
+            if (Input.GetAxis("Mouse Y") > minMovementSpeed) {
                 if (type == UIType.UICanvas) {
-                    if (gameObject.GetComponent<RectTransform> ().localPosition.y > -80) {
-                        gameObject.GetComponent<RectTransform> ().Translate (Vector3.down * horizontalSpeed * Time.deltaTime);
+                    if (gameObject.GetComponent<RectTransform>().localPosition.y > -80) {
+                        gameObject.GetComponent<RectTransform>().Translate(Vector3.down * horizontalSpeed * Time.deltaTime);
                     }
                 } else if (type == UIType.UIObject) {
                     if (gameObject.transform.localPosition.y > -3) {
-                        gameObject.transform.Translate (Vector3.down * horizontalSpeed * Time.deltaTime);
+                        gameObject.transform.Translate(Vector3.down * horizontalSpeed * Time.deltaTime);
                     }
                 }
             }
