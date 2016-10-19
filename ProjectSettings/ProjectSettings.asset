@@ -556,6 +556,6 @@ PlayerSettings:
   iOS::VR::enabledDevices: []
   tvOS::VR::enabledDevices: []
   cloudProjectId: 7e27fd5f-1c42-452d-b438-97d49f803472
-  projectName: Final Frontier
+  projectName: Final Frontier Explorer
   organizationId: cicanci
   cloudEnabled: 0

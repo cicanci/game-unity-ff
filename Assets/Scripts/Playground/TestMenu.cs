@@ -36,40 +36,13 @@ namespace Playground
 
         void UpdateUI() 
         {
-            if (shipNameLabel != null)
-            {
-                shipNameLabel.text = shipName;
-            }
-
-            if (shipClassLabel != null)
-            {
-                shipClassLabel.text = shipClass;
-            }
-
-            if (shipLevelLabel != null)
-            {
-                shipLevelLabel.text = shipLevel.ToString();
-            }
-
-            if (shipAttackSlider != null)
-            {
-                shipAttackSlider.value = ((float) shipAttack) / 100;
-            }
-
-            if (shipDefenseSlider != null)
-            {
-                shipDefenseSlider.value = ((float)shipDefense) / 100;
-            }
-
-            if (shipSpeedSlider != null)
-            {
-                shipSpeedSlider.value = ((float)shipSpeed) / 100;
-            }
-
-            if (shipCargoSlider != null)
-            {
-                shipCargoSlider.value = ((float)shipCargo) / 100;
-            }
+            shipNameLabel.text = shipName;
+            shipClassLabel.text = shipClass;
+            shipLevelLabel.text = shipLevel.ToString();
+            shipAttackSlider.value = ((float) shipAttack) / 100;
+            shipDefenseSlider.value = ((float)shipDefense) / 100;
+            shipSpeedSlider.value = ((float)shipSpeed) / 100;
+            shipCargoSlider.value = ((float)shipCargo) / 100;
         }
     }
 }

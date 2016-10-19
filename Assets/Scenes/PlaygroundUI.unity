@@ -1973,9 +1973,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Item
-
-    #02'
+  m_Text: 
 --- !u!222 &39166977
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2049,9 +2047,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Item
-
-    #05'
+  m_Text: 
 --- !u!222 &70023486
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2125,7 +2121,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Upgrade \nSlot #10"
+  m_Text: 
 --- !u!222 &83622260
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2389,8 +2385,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 689ab183835214b259415cb3ac290c27, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2517,9 +2513,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Item
-
-    #08'
+  m_Text: 
 --- !u!222 &162572070
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3035,9 +3029,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Item
-
-    #06'
+  m_Text: 
 --- !u!222 &324185802
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3307,9 +3299,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Item
-
-    #03'
+  m_Text: 
 --- !u!222 &407706853
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3414,8 +3404,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 2d4e7185afc32478da608942d632e001, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3885,8 +3875,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 76f8cb4eb082a4c0e9e6446565bcb0f5, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4013,9 +4003,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Item
-
-    #09'
+  m_Text: 
 --- !u!222 &745496155
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4378,7 +4366,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Upgrade \nSlot #02"
+  m_Text: "Select \nUpgrade"
 --- !u!222 &793937284
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4483,8 +4471,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: bdd058f1adb7b4ba5a5295448daffbd7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4611,7 +4599,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Upgrade \nSlot #01"
+  m_Text: "Select \nUpgrade"
 --- !u!222 &859588063
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4907,9 +4895,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Item
-
-    #07'
+  m_Text: 
 --- !u!222 &1027583772
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5468,7 +5454,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
 --- !u!114 &1190500128
@@ -5670,8 +5656,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 41c7c532981474f11a2c983c785d433e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7793,7 +7779,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Upgrade \nSlot #04"
+  m_Text: "Select \nUpgrade"
 --- !u!222 &1312595703
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7867,7 +7853,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Upgrade \nSlot #09"
+  m_Text: 
 --- !u!222 &1319383737
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8588,7 +8574,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Upgrade \nSlot #06"
+  m_Text: 
 --- !u!222 &1545270405
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8708,7 +8694,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Upgrade \nSlot #07"
+  m_Text: 
 --- !u!222 &1565759562
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11649,7 +11635,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Upgrade \nSlot #05"
+  m_Text: "Select \nUpgrade"
 --- !u!222 &1874200127
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11723,7 +11709,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Upgrade \nSlot #08"
+  m_Text: 
 --- !u!222 &1879483888
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11797,9 +11783,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Item
-
-    #04'
+  m_Text: 
 --- !u!222 &1882351270
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15894,7 +15878,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Upgrade \nSlot #03"
+  m_Text: "Select \nUpgrade"
 --- !u!222 &2068041755
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16079,9 +16063,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Item
-
-    #01'
+  m_Text: 
 --- !u!222 &2117012004
 CanvasRenderer:
   m_ObjectHideFlags: 0
