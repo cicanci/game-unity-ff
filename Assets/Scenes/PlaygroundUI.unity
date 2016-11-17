@@ -8613,7 +8613,7 @@ MonoBehaviour:
   cursorTextureBig: {fileID: 2800000, guid: 770fad0e0345542eb983c1cc657546a1, type: 3}
   hotSpotBig: {x: 64, y: 64}
   cursorMode: 1
-  cursorType: 0
+  cursorType: 1
 --- !u!4 &1561249611
 Transform:
   m_ObjectHideFlags: 0
@@ -9777,7 +9777,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -223553641
+  randomSeed: 2114092302
   InitialModule:
     serializedVersion: 2
     enabled: 1
