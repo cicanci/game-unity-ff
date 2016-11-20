@@ -8,6 +8,7 @@ namespace Playground
 	public class TestItemButton : MonoBehaviour
 	{
 		public UpgradeItem upgrateItem;
+		public string upgradeItemID;
 
 		void Start()
 		{
