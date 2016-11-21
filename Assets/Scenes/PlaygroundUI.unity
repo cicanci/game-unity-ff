@@ -2256,7 +2256,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -2273,7 +2273,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -2415,7 +2415,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -2432,7 +2432,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -3434,7 +3434,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -3451,7 +3451,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -3692,7 +3692,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -3709,7 +3709,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -3731,9 +3731,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 694388450}
+  - 114: {fileID: 694388453}
+  - 114: {fileID: 694388452}
   - 114: {fileID: 694388449}
+  - 114: {fileID: 694388451}
   m_Layer: 0
-  m_Name: MenuController
+  m_Name: Scene Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3777,6 +3780,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!114 &694388451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 694388448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4ccdfc3e1744098a6a4c4ae0c89862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 2051081983}
+  inventoryExpand: {fileID: 1121775601}
+--- !u!114 &694388452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 694388448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b074cca780d47c78bf5b5f15dc36ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTextureSmall: {fileID: 2800000, guid: 3cd25eaeb25f84932a06f0acedb2a3dc, type: 3}
+  hotSpotSmall: {x: 32, y: 32}
+  cursorTextureBig: {fileID: 2800000, guid: 770fad0e0345542eb983c1cc657546a1, type: 3}
+  hotSpotBig: {x: 64, y: 64}
+  cursorMode: 1
+  cursorType: 1
+--- !u!114 &694388453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 694388448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6657cc00b7b44b1aff8471c64106af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &728621440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3905,7 +3949,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -3922,7 +3966,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -4138,7 +4182,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -4155,7 +4199,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -4501,7 +4545,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -4518,7 +4562,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -4618,7 +4662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2aca191eef84fa4a212499f5e0a436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgrateItem: {fileID: 11400000, guid: 8c99eb559c5e54d93a8476faff3d2180, type: 2}
+  slodID: 0
 --- !u!1 &865047276
 GameObject:
   m_ObjectHideFlags: 0
@@ -5699,7 +5743,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -5716,7 +5760,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -8297,7 +8341,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -8314,7 +8358,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -8594,52 +8638,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1545270402}
---- !u!1 &1561249609
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1561249611}
-  - 114: {fileID: 1561249610}
-  m_Layer: 0
-  m_Name: SceneController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1561249610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1561249609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62b074cca780d47c78bf5b5f15dc36ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorTextureSmall: {fileID: 2800000, guid: 3cd25eaeb25f84932a06f0acedb2a3dc, type: 3}
-  hotSpotSmall: {x: 32, y: 32}
-  cursorTextureBig: {fileID: 2800000, guid: 770fad0e0345542eb983c1cc657546a1, type: 3}
-  hotSpotBig: {x: 64, y: 64}
-  cursorMode: 1
-  cursorType: 1
---- !u!4 &1561249611
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1561249609}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
 --- !u!1 &1565759559
 GameObject:
   m_ObjectHideFlags: 0
@@ -9168,7 +9166,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: ShowPanel
           m_Mode: 3
           m_Arguments:
@@ -9185,7 +9183,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1834225108}
+        - m_Target: {fileID: 694388451}
           m_MethodName: HidePanel
           m_Mode: 1
           m_Arguments:
@@ -9539,48 +9537,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1811194273}
---- !u!1 &1834225107
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1834225109}
-  - 114: {fileID: 1834225108}
-  m_Layer: 0
-  m_Name: InventaryController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1834225108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1834225107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa4ccdfc3e1744098a6a4c4ae0c89862, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 2051081983}
-  inventoryExpand: {fileID: 1121775601}
---- !u!4 &1834225109
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1834225107}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
 --- !u!1 &1844356076
 GameObject:
   m_ObjectHideFlags: 0
@@ -9790,7 +9746,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 2114092302
+  randomSeed: 1060542342
   InitialModule:
     serializedVersion: 2
     enabled: 1

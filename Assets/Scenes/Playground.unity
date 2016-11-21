@@ -223,7 +223,7 @@ GameObject:
   - 4: {fileID: 581825045}
   - 114: {fileID: 581825044}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: Scene Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,6 +240,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b074cca780d47c78bf5b5f15dc36ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorTextureSmall: {fileID: 0}
+  hotSpotSmall: {x: 0, y: 0}
+  cursorTextureBig: {fileID: 0}
+  hotSpotBig: {x: 0, y: 0}
+  cursorMode: 0
+  cursorType: 2
 --- !u!4 &581825045
 Transform:
   m_ObjectHideFlags: 0
@@ -315,7 +321,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
 --- !u!1 &923985328
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +378,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 6
 --- !u!114 &972436778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,7 +458,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1001 &1368766705
 Prefab:
   m_ObjectHideFlags: 0
@@ -594,7 +600,7 @@ RectTransform:
   m_Children:
   - {fileID: 302709764}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -667,7 +673,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 446840, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 31624e94d8a420946baf77ddf39e6a1c, type: 2}

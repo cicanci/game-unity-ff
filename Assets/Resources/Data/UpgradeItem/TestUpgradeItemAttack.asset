@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemID: TEST_ATTACK
   ItemBonus: 0
-  BonusValue: 10
+  BonusValue: 15
   ItemWeapon: 3
   ItemDurability: 0
   ItemPrefab: {fileID: 1000010251281334, guid: 211db23306c93425f9328eeee8253c1c, type: 2}

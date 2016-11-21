@@ -29,5 +29,10 @@ namespace Prototype.Data
         public WeaponType ItemWeapon;
         public float ItemDurability;
         public GameObject ItemPrefab;
+
+		public string GetName()
+		{
+			return ItemBonus.ToString() + "\n+" + BonusValue;
+		}
     }
 }
