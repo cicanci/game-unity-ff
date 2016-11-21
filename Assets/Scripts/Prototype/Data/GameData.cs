@@ -6,10 +6,12 @@ namespace Prototype.Data
 	[Serializable]
 	public class GameData
 	{
+		public int ShipLevel { get; set; }
 		public string[,] ShipSlot { get; set; }
 
 		public GameData()
 		{
+			ShipLevel = 1;
 			// Create 10 ship slots with 10 items on each
 			ShipSlot = new string[10, 10];
 

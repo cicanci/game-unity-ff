@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System.Collections;
+using Prototype.Data;
+using Frictionless;
+using System.Collections.Generic;
 
 namespace Playground
 {
@@ -20,29 +21,69 @@ namespace Playground
         [Range (0, 100)]
         public int shipLevel;
         [Range(0, 100)]
-        public int shipAttack;
+        public float shipAttack;
         [Range(0, 100)]
-        public int shipDefense;
+        public float shipDefense;
         [Range(0, 100)]
-        public int shipSpeed;
+        public float shipSpeed;
         [Range(0, 100)]
-        public int shipCargo;
+        public float shipCargo;
 
         void Start()
         {
             Debug.LogWarning("Playground::TestMenu script is in use by " + gameObject.name);
+
+			LoadUpgrades();
+
             UpdateUI();
         }
 
-        void UpdateUI() 
+		void LoadUpgrades()
+		{
+			DataManager dataManager = ServiceFactory.Instance.Resolve<DataManager>();
+			List<UpgradeItem> upgradeItemList = dataManager.upgradeItemList.itemList;
+
+			// Level
+			shipLevel = dataManager.gameData.ShipLevel;
+
+			// Attack
+			if (!string.IsNullOrEmpty(dataManager.gameData.ShipSlot[0, 0]))
+			{
+				UpgradeItem upgradeItem = upgradeItemList.Find(i => i.ItemID == dataManager.gameData.ShipSlot[0, 0]);
+				shipAttack = upgradeItem.BonusValue;
+			}
+
+			// Defense
+			if (!string.IsNullOrEmpty(dataManager.gameData.ShipSlot[1, 0]))
+			{
+				UpgradeItem upgradeItem = upgradeItemList.Find(i => i.ItemID == dataManager.gameData.ShipSlot[1, 0]);
+				shipDefense = upgradeItem.BonusValue;
+			}
+
+			// Speed
+			if (!string.IsNullOrEmpty(dataManager.gameData.ShipSlot[2, 0]))
+			{
+				UpgradeItem upgradeItem = upgradeItemList.Find(i => i.ItemID == dataManager.gameData.ShipSlot[2, 0]);
+				shipSpeed = upgradeItem.BonusValue;
+			}
+
+			// Cargo
+			if (!string.IsNullOrEmpty(dataManager.gameData.ShipSlot[3, 0]))
+			{
+				UpgradeItem upgradeItem = upgradeItemList.Find(i => i.ItemID == dataManager.gameData.ShipSlot[3, 0]);
+				shipCargo = upgradeItem.BonusValue;
+			}
+		}
+
+		void UpdateUI() 
         {
             shipNameLabel.text = shipName;
             shipClassLabel.text = shipClass;
             shipLevelLabel.text = shipLevel.ToString();
-            shipAttackSlider.value = ((float) shipAttack) / 100;
-            shipDefenseSlider.value = ((float)shipDefense) / 100;
-            shipSpeedSlider.value = ((float)shipSpeed) / 100;
-            shipCargoSlider.value = ((float)shipCargo) / 100;
+            shipAttackSlider.value = shipAttack / 100;
+            shipDefenseSlider.value = shipDefense / 100;
+            shipSpeedSlider.value = shipSpeed / 100;
+            shipCargoSlider.value = shipCargo / 100;
         }
     }
 }
