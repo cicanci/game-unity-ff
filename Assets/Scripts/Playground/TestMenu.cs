@@ -43,8 +43,9 @@ namespace Playground
 			DataManager dataManager = ServiceFactory.Instance.Resolve<DataManager>();
 			List<UpgradeItem> upgradeItemList = dataManager.upgradeItemList.itemList;
 
-			// Level
 			shipLevel = dataManager.gameData.ShipLevel;
+			shipName = dataManager.gameData.ShipName;
+			shipClass = dataManager.gameData.ShipClass;
 
 			// Attack
 			if (!string.IsNullOrEmpty(dataManager.gameData.ShipSlot[0, 0]))
@@ -79,7 +80,7 @@ namespace Playground
         {
             shipNameLabel.text = shipName;
             shipClassLabel.text = shipClass;
-            shipLevelLabel.text = shipLevel.ToString();
+            shipLevelLabel.text = shipLevel.ToString("D2");
             shipAttackSlider.value = shipAttack / 100;
             shipDefenseSlider.value = shipDefense / 100;
             shipSpeedSlider.value = shipSpeed / 100;

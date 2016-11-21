@@ -20,7 +20,6 @@ namespace Playground
 				List<UpgradeItem> upgradeItemList = dataManager.upgradeItemList.itemList;
 				UpgradeItem upgradeItem = upgradeItemList.Find(i => i.ItemID == upgradeItemID);
 
-				Debug.Log(upgradeItem.ItemID);
 				GameObject item = Instantiate(upgradeItem.ItemPrefab) as GameObject;
 				item.transform.SetParent(transform.parent, false);
 				item.GetComponentInChildren<Text>().text = upgradeItem.GetName();
