@@ -16,7 +16,7 @@ namespace Prototype.Data
 			upgradeItemList = Resources.Load<UpgradeItemList>("Data/UpgradeItemList");
 			Debug.Log("upgradeItemList: " + upgradeItemList.itemList.Count);
 
-			//File.Delete(Application.persistentDataPath + fileName);
+			File.Delete(Application.persistentDataPath + fileName);
 			Debug.Log("Game Data: " + Application.persistentDataPath + fileName);
 		}
 

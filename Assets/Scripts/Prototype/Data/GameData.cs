@@ -22,6 +22,9 @@ namespace Prototype.Data
 			ShipName = "Imperial Fighter";
 			ShipClass = "Star Empire Ship";
 			ShipSlot[0, 0] = "TEST_ATTACK";
+			ShipSlot[0, 1] = "TEST_DEFENSE";
+			ShipSlot[0, 2] = "TEST_SPEED";
+			ShipSlot[0, 3] = "TEST_CARGO";
 			ShipSlot[1, 0] = "TEST_DEFENSE";
 			ShipSlot[2, 0] = "TEST_SPEED";
 			ShipSlot[3, 0] = "TEST_CARGO";

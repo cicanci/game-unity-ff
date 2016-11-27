@@ -2,6 +2,9 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
+using Prototype.Data;
+using System.Collections.Generic;
+using Frictionless;
 
 namespace Playground
 {
@@ -47,6 +50,7 @@ namespace Playground
             }
 
             UpdatePosition();
+			UpdateSlots(item);
             expand.ShowPanel();
         }
 
@@ -63,5 +67,34 @@ namespace Playground
             Vector2 position = new Vector2(inventory.localPosition.x - offsetX + itemPositionX, inventory.localPosition.y + offsetY - itemPositionY);
             inventoryExpand.GetComponent<RectTransform>().localPosition = position;
         }
+
+		private void UpdateSlots(int slodID)
+		{
+			DataManager dataManager = ServiceFactory.Instance.Resolve<DataManager>();
+
+			TestExpandItemButton[] buttons = inventoryExpand.GetComponentsInChildren<TestExpandItemButton>();
+
+			// Ignore the 0 position because it is the active slot item
+			for (int i = 1; i < 10; i++)
+			{
+				string upgradeItemID = dataManager.gameData.ShipSlot[slodID, i];
+
+				if (!string.IsNullOrEmpty(upgradeItemID))
+				{
+					List<UpgradeItem> upgradeItemList = dataManager.upgradeItemList.itemList;
+					UpgradeItem upgradeItem = upgradeItemList.Find(item => item.ItemID == upgradeItemID);
+					Debug.Log(upgradeItem.ItemBonus.ToString());
+
+					//GameObject upgrade = Instantiate(upgradeItem.ItemPrefab) as GameObject;
+					//buttons[i - 1].gameObject.transform.SetParent(transform.parent, false);
+					//upgrade.GetComponentInChildren<Text>().text = upgradeItem.GetName();
+					buttons[i - 1].GetComponentInChildren<Text>().text = upgradeItem.GetName();
+				}
+				else
+				{
+					buttons[i - 1].GetComponentInChildren<Text>().text = string.Empty;
+				}
+			}
+		}
     }
 }
