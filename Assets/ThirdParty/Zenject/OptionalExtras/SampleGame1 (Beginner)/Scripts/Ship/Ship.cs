@@ -14,7 +14,7 @@ namespace Zenject.Asteroids
         MeshRenderer _meshRenderer;
 
         [SerializeField]
-        ParticleEmitter _particleEmitter;
+        ParticleSystem _particleEmitter;
 
         ShipStateFactory _stateFactory;
         ShipState _state = null;
@@ -33,7 +33,7 @@ namespace Zenject.Asteroids
             }
         }
 
-        public ParticleEmitter ParticleEmitter
+        public ParticleSystem ParticleEmitter
         {
             get
             {
