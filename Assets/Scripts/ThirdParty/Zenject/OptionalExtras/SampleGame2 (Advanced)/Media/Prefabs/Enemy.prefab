@@ -5,17 +5,16 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 463158}
-  - 114: {fileID: 11469920}
-  - 114: {fileID: 11462742}
-  - 114: {fileID: 11412842}
-  - 33: {fileID: 3388348}
-  - 23: {fileID: 2329700}
-  - 54: {fileID: 5458816}
-  - 65: {fileID: 6529106}
-  - 114: {fileID: 11414686}
+  - component: {fileID: 463158}
+  - component: {fileID: 11469920}
+  - component: {fileID: 11462742}
+  - component: {fileID: 11412842}
+  - component: {fileID: 3388348}
+  - component: {fileID: 2329700}
+  - component: {fileID: 5458816}
+  - component: {fileID: 6529106}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -28,10 +27,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 471460}
-  - 114: {fileID: 11453994}
+  - component: {fileID: 471460}
+  - component: {fileID: 11453994}
   m_Layer: 8
   m_Name: Installer
   m_TagString: Untagged
@@ -47,12 +46,12 @@ Transform:
   m_GameObject: {fileID: 158650}
   m_LocalRotation: {x: 0, y: 0, z: 0.39402217, w: 0.91910094}
   m_LocalPosition: {x: 41.7, y: 4.7, z: 0}
-  m_LocalScale: {x: 0.79406416, y: 0.794064, z: 0.79406404}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 471460}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &471460
 Transform:
   m_ObjectHideFlags: 1
@@ -62,10 +61,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 463158}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2329700
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -80,7 +79,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 50755dee91b8d2142a777c6b00ad6923, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -88,12 +89,13 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &3388348
 MeshFilter:
@@ -145,17 +147,6 @@ MonoBehaviour:
   _identifier: 
   _context: {fileID: 0}
   _bindType: 0
---- !u!114 &11414686
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 158650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3229cbdaa20864545965fa8b687edbcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11453994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,37 +163,6 @@ MonoBehaviour:
     Rigidbody: {fileID: 5458816}
     Collider: {fileID: 6529106}
     Renderer: {fileID: 2329700}
-    DefaultSettings:
-      Accuracy: 1
-      Speed: 25
-      AttackDistance: 25
-    EnemyCollisionHandler:
-      HealthLoss: 55
-      HitForce: 500
-      HitSound: {fileID: 8300000, guid: d2509c8879c3e514485098af04449f3e, type: 3}
-    EnemyStateIdle:
-      Amplitude: 0.5
-      Frequency: 4
-      AttackDistance: 20
-      WaitTime: 5
-    EnemyStateRunAway:
-      SafeDistance: 80
-    EnemyRotationHandler:
-      TurnSpeed: 10
-    EnemyStateFollow:
-      StrafeMultiplier: 0.5
-      StrafeChangeInterval: 0.8
-      TeleportDistance: 80
-      TeleportNewDistance: 40
-    EnemyStateAttack:
-      BulletLifetime: 5
-      BulletSpeed: 30
-      BulletOffsetDistance: 2
-      ShootInterval: 0.4
-      ErrorRangeTheta: 30
-      AttackRangeBuffer: 8
-      StrafeMultiplier: 0.5
-      StrafeChangeInterval: 0.8
 --- !u!114 &11462742
 MonoBehaviour:
   m_ObjectHideFlags: 1

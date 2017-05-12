@@ -55,13 +55,13 @@ namespace Zenject.Asteroids
             Container.Bind<AsteroidManager>().AsSingle();
 
             // The above three lines are also identical to just doing this instead:
-            // Container.BindAllInterfacesAndSelf<AsteroidManager>().To<AsteroidManager>();
+            // Container.BindInterfacesAndSelfTo<AsteroidManager>();
 
             // Here, we're defining a generic factory to create asteroid objects using the given prefab
             // So any classes that want to create new asteroid objects can simply include an injected field
             // or constructor parameter of type Asteroid.Factory, then call Create() on that
             Container.BindFactory<Asteroid, Asteroid.Factory>()
-                .FromPrefab(_settings.AsteroidPrefab)
+                .FromComponentInNewPrefab(_settings.AsteroidPrefab)
                 // We can also tell Zenject what to name the new gameobject here
                 .WithGameObjectName("Asteroid")
                 // GameObjectGroup's are just game objects used for organization
@@ -71,27 +71,27 @@ namespace Zenject.Asteroids
 
         void InstallMisc()
         {
-            Container.BindAllInterfacesAndSelf<GameController>().To<GameController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameController>().AsSingle();
             Container.Bind<LevelHelper>().AsSingle();
 
-            Container.BindAllInterfaces<AudioHandler>().To<AudioHandler>().AsSingle();
+            Container.BindInterfacesTo<AudioHandler>().AsSingle();
 
-            Container.BindFactory<GameObject, ExplosionFactory>().FromPrefab(_settings.ExplosionPrefab);
-            Container.BindFactory<GameObject, BrokenShipFactory>().FromPrefab(_settings.BrokenShipPrefab);
+            Container.Bind<ExplosionFactory>().AsSingle().WithArguments(_settings.ExplosionPrefab);
+            Container.Bind<BrokenShipFactory>().AsSingle().WithArguments(_settings.BrokenShipPrefab);
         }
 
         void InstallShip()
         {
-            Container.BindSignal<Signals.ShipCrashed>();
+            Container.DeclareSignal<ShipCrashedSignal>();
 
             Container.Bind<ShipStateFactory>().AsSingle();
 
             // Note that the ship itself is bound using a ZenjectBinding component (see Ship
             // game object in scene heirarchy)
 
-            Container.BindFactory<ShipStateWaitingToStart, ShipStateWaitingToStart.Factory>();
-            Container.BindFactory<ShipStateDead, ShipStateDead.Factory>();
-            Container.BindFactory<ShipStateMoving, ShipStateMoving.Factory>();
+            Container.BindFactory<ShipStateWaitingToStart, ShipStateWaitingToStart.Factory>().WhenInjectedInto<ShipStateFactory>();
+            Container.BindFactory<ShipStateDead, ShipStateDead.Factory>().WhenInjectedInto<ShipStateFactory>();
+            Container.BindFactory<ShipStateMoving, ShipStateMoving.Factory>().WhenInjectedInto<ShipStateFactory>();
         }
 
         void InitExecutionOrder()

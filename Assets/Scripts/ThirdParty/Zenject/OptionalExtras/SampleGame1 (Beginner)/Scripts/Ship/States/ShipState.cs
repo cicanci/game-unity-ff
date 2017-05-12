@@ -5,15 +5,7 @@ using Zenject;
 
 namespace Zenject.Asteroids
 {
-    public enum ShipStates
-    {
-        Moving,
-        Dead,
-        WaitingToStart,
-        Count,
-    }
-
-    public abstract class ShipState
+    public abstract class ShipState : IDisposable
     {
         public abstract void Update();
 
@@ -22,7 +14,7 @@ namespace Zenject.Asteroids
             // optionally overridden
         }
 
-        public virtual void Stop()
+        public virtual void Dispose()
         {
             // optionally overridden
         }

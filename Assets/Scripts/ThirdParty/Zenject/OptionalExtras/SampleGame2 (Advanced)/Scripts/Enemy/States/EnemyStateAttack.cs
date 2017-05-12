@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using ModestTree;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,39 +8,45 @@ namespace Zenject.SpaceFighter
 {
     public class EnemyStateAttack : IEnemyState
     {
+        readonly EnemyCommonSettings _commonSettings;
+        readonly AudioPlayer _audioPlayer;
         readonly EnemyTunables _tunables;
         readonly EnemyStateManager _stateManager;
         readonly PlayerFacade _player;
         readonly Settings _settings;
-        readonly EnemyModel _model;
-        readonly Bullet.Factory _bulletFactory;
+        readonly Enemy _enemy;
+        readonly Bullet.Pool _bulletPool;
 
         float _lastShootTime;
         bool _strafeRight;
         float _lastStrafeChangeTime;
 
         public EnemyStateAttack(
-            Bullet.Factory bulletFactory,
-            EnemyModel model,
+            Bullet.Pool bulletPool,
+            Enemy enemy,
             Settings settings,
             PlayerFacade player,
             EnemyStateManager stateManager,
-            EnemyTunables tunables)
+            EnemyTunables tunables,
+            AudioPlayer audioPlayer,
+            EnemyCommonSettings commonSettings)
         {
+            _commonSettings = commonSettings;
+            _audioPlayer = audioPlayer;
             _tunables = tunables;
             _stateManager = stateManager;
             _player = player;
             _settings = settings;
-            _model = model;
-            _bulletFactory = bulletFactory;
+            _enemy = enemy;
+            _bulletPool = bulletPool;
             _strafeRight = Random.Range(0.0f, 1.0f) < 0.5f;
         }
 
-        public void Initialize()
+        public void EnterState()
         {
         }
 
-        public void Dispose()
+        public void ExitState()
         {
         }
 
@@ -51,7 +58,7 @@ namespace Zenject.SpaceFighter
                 return;
             }
 
-            _model.DesiredLookDir = (_player.Position - _model.Position).normalized;
+            _enemy.DesiredLookDir = (_player.Position - _enemy.Position).normalized;
 
             // Strafe back and forth over the given interval
             if (Time.realtimeSinceStartup - _lastStrafeChangeTime > _settings.StrafeChangeInterval)
@@ -68,7 +75,7 @@ namespace Zenject.SpaceFighter
             }
 
             // If the player runs away then chase them
-            if ((_player.Position - _model.Position).magnitude > _tunables.AttackDistance + _settings.AttackRangeBuffer)
+            if ((_player.Position - _enemy.Position).magnitude > _commonSettings.AttackDistance + _settings.AttackRangeBuffer)
             {
                 _stateManager.ChangeState(EnemyStates.Follow);
             }
@@ -79,17 +86,17 @@ namespace Zenject.SpaceFighter
             // Strafe to avoid getting hit too easily
             if (_strafeRight)
             {
-                _model.AddForce(_model.RightDir * _settings.StrafeMultiplier * _model.MoveSpeed);
+                _enemy.AddForce(_enemy.RightDir * _settings.StrafeMultiplier * _tunables.Speed);
             }
             else
             {
-                _model.AddForce(-_model.RightDir * _settings.StrafeMultiplier * _model.MoveSpeed);
+                _enemy.AddForce(-_enemy.RightDir * _settings.StrafeMultiplier * _tunables.Speed);
             }
         }
 
         void Fire()
         {
-            var bullet = _bulletFactory.Create(
+            var bullet = _bulletPool.Spawn(
                 _settings.BulletSpeed, _settings.BulletLifetime, BulletTypes.FromEnemy);
 
             // Randomize our aim a bit
@@ -104,13 +111,18 @@ namespace Zenject.SpaceFighter
 
             var thetaError = error * _settings.ErrorRangeTheta;
 
-            bullet.transform.position = _model.Position + _model.LookDir * _settings.BulletOffsetDistance;
-            bullet.transform.rotation = Quaternion.AngleAxis(thetaError, Vector3.forward) * _model.Rotation;
+            bullet.transform.position = _enemy.Position + _enemy.LookDir * _settings.BulletOffsetDistance;
+            bullet.transform.rotation = Quaternion.AngleAxis(thetaError, Vector3.forward) * _enemy.Rotation;
+
+            _audioPlayer.Play(_settings.ShootSound, _settings.ShootSoundVolume);
         }
 
         [Serializable]
         public class Settings
         {
+            public AudioClip ShootSound;
+            public float ShootSoundVolume = 1.0f;
+
             public float BulletLifetime;
             public float BulletSpeed;
             public float BulletOffsetDistance;

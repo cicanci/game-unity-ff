@@ -25,7 +25,9 @@ MonoBehaviour:
         type: 2}
       explosionForce: 15
     StateStarting:
-      blinkRate: 1
+      StartOffset: {x: 0, y: 3, z: 0}
+      Amplitude: 0.25
+      Frequency: 5
   Asteroid:
     Spawner:
       minSpeed: 5

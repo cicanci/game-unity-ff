@@ -6,40 +6,28 @@ namespace Zenject.SpaceFighter
 {
     public class EnemyStateIdle : IEnemyState
     {
-        readonly EnemyGlobalTunables _globalTunables;
-        readonly PlayerFacade _player;
-        readonly EnemyRegistry _registry;
-        readonly EnemyStateManager _stateManager;
         readonly Settings _settings;
-        readonly EnemyModel _model;
+        readonly Enemy _enemy;
 
         Vector3 _startPos;
         float _theta;
         Vector3 _startLookDir;
 
         public EnemyStateIdle(
-            EnemyModel model, Settings settings,
-            EnemyStateManager stateManager,
-            EnemyRegistry registry,
-            PlayerFacade player,
-            EnemyGlobalTunables globalTunables)
+            Enemy enemy, Settings settings)
         {
-            _globalTunables = globalTunables;
-            _player = player;
-            _registry = registry;
-            _stateManager = stateManager;
             _settings = settings;
-            _model = model;
+            _enemy = enemy;
         }
 
-        public void Initialize()
+        public void EnterState()
         {
-            _startPos = _model.Position;
-            _theta = 0;
-            _startLookDir = _model.LookDir;
+            _startPos = _enemy.Position;
+            _theta = UnityEngine.Random.Range(0, 2.0f * Mathf.PI);
+            _startLookDir = _enemy.LookDir;
         }
 
-        public void Dispose()
+        public void ExitState()
         {
         }
 
@@ -48,29 +36,8 @@ namespace Zenject.SpaceFighter
         {
             _theta += Time.deltaTime * _settings.Frequency;
 
-            _model.Position = _startPos + _model.RightDir * _settings.Amplitude * Mathf.Sin(_theta);
-
-            if (_player.IsDead)
-            {
-                _model.DesiredLookDir = _startLookDir;
-            }
-            else
-            {
-                // look away from player
-                _model.DesiredLookDir = -(_player.Position - _model.Position).normalized;
-            }
-
-            if (!_player.IsDead)
-            {
-                if (_registry.Enemies.Where(x => x.IsAttacking || x.IsChasing).Count() < _globalTunables.NumAttacking)
-                {
-                    _stateManager.ChangeState(EnemyStates.Follow);
-                }
-                else if ((_player.Position - _model.Position).magnitude < _settings.AttackDistance)
-                {
-                    _stateManager.ChangeState(EnemyStates.Attack);
-                }
-            }
+            _enemy.Position = _startPos + _enemy.RightDir * _settings.Amplitude * Mathf.Sin(_theta);
+            _enemy.DesiredLookDir = _startLookDir;
         }
 
         public void FixedUpdate()
@@ -82,8 +49,6 @@ namespace Zenject.SpaceFighter
         {
             public float Amplitude;
             public float Frequency;
-            public float AttackDistance;
-            public float WaitTime;
         }
     }
 }

@@ -1,59 +1,113 @@
 using System;
+using ModestTree;
+using ModestTree.Util;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Zenject.SpaceFighter
 {
-    public class EnemySpawner : ITickable
+    public class EnemySpawner : ITickable, IInitializable
     {
-        readonly EnemyGlobalTunables _globalTunables;
-        readonly EnemyRegistry _enemyRegistry;
-        readonly EnemyFacade.Factory _enemyFactory;
+        readonly LevelBoundary _levelBoundary;
+        readonly EnemyFacade.Pool _enemyFactory;
         readonly Settings _settings;
-        readonly PlayerFacade _player;
+
+        EnemyKilledSignal _enemyKilledSignal;
+        float _desiredNumEnemies;
+        int _enemyCount;
+        float _lastSpawnTime;
 
         public EnemySpawner(
-            PlayerFacade player,
             Settings settings,
-            EnemyFacade.Factory enemyFactory,
-            EnemyRegistry enemyRegistry,
-            EnemyGlobalTunables globalTunables)
+            EnemyFacade.Pool enemyFactory,
+            LevelBoundary levelBoundary,
+            EnemyKilledSignal enemyKilledSignal)
         {
-            _globalTunables = globalTunables;
-            _enemyRegistry = enemyRegistry;
+            _enemyKilledSignal = enemyKilledSignal;
+            _levelBoundary = levelBoundary;
             _enemyFactory = enemyFactory;
             _settings = settings;
-            _player = player;
+
+            _desiredNumEnemies = settings.NumEnemiesStartAmount;
+        }
+
+        public void Initialize()
+        {
+            _enemyKilledSignal += OnEnemyKilled;
+        }
+
+        void OnEnemyKilled()
+        {
+            _enemyCount--;
         }
 
         public void Tick()
         {
-            if (_enemyRegistry.NumEnemies < _globalTunables.DesiredNumEnemies)
+            _desiredNumEnemies += _settings.NumEnemiesIncreaseRate * Time.deltaTime;
+
+            if (_enemyCount < (int)_desiredNumEnemies
+                && Time.realtimeSinceStartup - _lastSpawnTime > _settings.MinDelayBetweenSpawns)
             {
                 SpawnEnemy();
+                _enemyCount++;
             }
         }
 
         void SpawnEnemy()
         {
-            var settings = new EnemyTunables()
+            var tunables = new EnemyTunables()
             {
                 Speed = Random.Range(_settings.SpeedMin, _settings.SpeedMax),
                 Accuracy = Random.Range(_settings.AccuracyMin, _settings.AccuracyMax),
-                AttackDistance = Random.Range(_settings.AttackDistanceMin, _settings.AttackDistanceMax),
             };
 
-            var enemyFacade = _enemyFactory.Create(settings);
+            var enemyFacade = _enemyFactory.Spawn(tunables);
+            enemyFacade.Position = ChooseRandomStartPosition();
 
-            // Spawn from a random direction
-            var startTheta = Random.Range(0, 2 * Mathf.PI);
+            _lastSpawnTime = Time.realtimeSinceStartup;
+        }
 
-            var spawnDistance = Random.Range(_settings.SpawnDistanceMin, _settings.SpawnDistanceMax);
+        Vector3 ChooseRandomStartPosition()
+        {
+            var side = Random.Range(0, 3);
+            var posOnSide = Random.Range(0, 1.0f);
 
-            enemyFacade.Position = _player.Position
-                + Vector3.right * spawnDistance * Mathf.Cos(startTheta)
-                + Vector3.up * spawnDistance * Mathf.Sin(startTheta);
+            float buffer = 2.0f;
+
+            switch (side)
+            {
+                case 0:
+                // top
+                {
+                    return new Vector3(
+                        _levelBoundary.Left + posOnSide * _levelBoundary.Width,
+                        _levelBoundary.Top + buffer, 0);
+                }
+                case 1:
+                // right
+                {
+                    return new Vector3(
+                        _levelBoundary.Right + buffer,
+                        _levelBoundary.Top - posOnSide * _levelBoundary.Height, 0);
+                }
+                case 2:
+                // bottom
+                {
+                    return new Vector3(
+                        _levelBoundary.Left + posOnSide * _levelBoundary.Width,
+                        _levelBoundary.Bottom - buffer, 0);
+                }
+                case 3:
+                // left
+                {
+                    return new Vector3(
+                        _levelBoundary.Left - buffer,
+                        _levelBoundary.Top - posOnSide * _levelBoundary.Height, 0);
+                }
+            }
+
+            throw Assert.CreateException();
         }
 
         [Serializable]
@@ -65,11 +119,10 @@ namespace Zenject.SpaceFighter
             public float AccuracyMin;
             public float AccuracyMax;
 
-            public float AttackDistanceMin;
-            public float AttackDistanceMax;
+            public float NumEnemiesIncreaseRate;
+            public float NumEnemiesStartAmount;
 
-            public float SpawnDistanceMin;
-            public float SpawnDistanceMax;
+            public float MinDelayBetweenSpawns = 0.5f;
         }
     }
 }

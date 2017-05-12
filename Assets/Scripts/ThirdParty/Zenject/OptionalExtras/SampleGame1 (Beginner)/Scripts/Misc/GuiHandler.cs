@@ -10,7 +10,6 @@ namespace Zenject.Asteroids
 {
     public class GuiHandler : MonoBehaviour, IDisposable, IInitializable
     {
-        Signals.ShipCrashed _shipCrashed;
         GameController _gameController;
 
         [SerializeField]
@@ -38,13 +37,14 @@ namespace Zenject.Asteroids
         float _restartTextFadeInTime;
 
         float _gameOverElapsed;
+        ShipCrashedSignal _shipCrashedSignal;
 
         [Inject]
         public void Construct(
-            GameController gameController, Signals.ShipCrashed shipCrashed)
+            GameController gameController, ShipCrashedSignal shipCrashedSignal)
         {
             _gameController = gameController;
-            _shipCrashed = shipCrashed;
+            _shipCrashedSignal = shipCrashedSignal;
         }
 
         void OnGUI()
@@ -206,12 +206,12 @@ namespace Zenject.Asteroids
 
         public void Initialize()
         {
-            _shipCrashed += OnShipCrashed;
+            _shipCrashedSignal += OnShipCrashed;
         }
 
         public void Dispose()
         {
-            _shipCrashed -= OnShipCrashed;
+            _shipCrashedSignal -= OnShipCrashed;
         }
 
         void OnShipCrashed()

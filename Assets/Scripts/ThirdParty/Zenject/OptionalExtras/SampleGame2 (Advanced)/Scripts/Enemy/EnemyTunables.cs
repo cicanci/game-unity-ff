@@ -10,15 +10,5 @@ namespace Zenject.SpaceFighter
     {
         public float Accuracy;
         public float Speed;
-        public float AttackDistance;
-    }
-
-    // These values are global and used to ramp up the difficulty of our game
-    // over time
-    [Serializable]
-    public class EnemyGlobalTunables
-    {
-        public int NumAttacking;
-        public int DesiredNumEnemies;
     }
 }

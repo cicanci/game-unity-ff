@@ -25,11 +25,13 @@ namespace Zenject
             set;
         }
 
-        public Func<DiContainer, Transform> ParentTransformGetter
+        public Func<InjectContext, Transform> ParentTransformGetter
         {
             get;
             set;
         }
+
+        public static readonly GameObjectCreationParameters Default = new GameObjectCreationParameters();
 
         public override int GetHashCode()
         {

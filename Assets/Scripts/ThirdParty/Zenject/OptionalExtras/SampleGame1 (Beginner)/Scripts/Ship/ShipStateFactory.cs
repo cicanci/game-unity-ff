@@ -7,6 +7,14 @@ using ModestTree;
 
 namespace Zenject.Asteroids
 {
+    public enum ShipStates
+    {
+        Moving,
+        Dead,
+        WaitingToStart,
+        Count,
+    }
+
     public class ShipStateFactory
     {
         readonly ShipStateWaitingToStart.Factory _waitingFactory;

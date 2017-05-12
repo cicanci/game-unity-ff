@@ -1,48 +1,60 @@
-using System;
-using Zenject;
+using System.Collections.Generic;
 using ModestTree;
+using Zenject;
 
 namespace Zenject.SpaceFighter
 {
-    public interface IEnemyState : IDisposable
+    public interface IEnemyState
     {
-        void Initialize();
+        void EnterState();
+        void ExitState();
         void Update();
         void FixedUpdate();
     }
 
+    public enum EnemyStates
+    {
+        Idle,
+        Attack,
+        Follow,
+        None,
+    }
+
     // This class controls the basic "AI" of our enemy
-    // Which works as a finite state machine, between four states:
+    // Which works as a finite state machine, between three states:
     // - Attack
     // - Follow/Chase
     // - Idle
-    // - RunAway
     public class EnemyStateManager : ITickable, IFixedTickable, IInitializable
     {
-        readonly EnemyStateFactory _stateFactory;
-
-        IEnemyState _stateHandler;
+        IEnemyState _currentStateHandler;
         EnemyStates _currentState = EnemyStates.None;
 
-        public EnemyStateManager(EnemyStateFactory stateFactory)
+        List<IEnemyState> _states;
+
+        // We can't use a constructor due to a circular dependency issue
+        [Inject]
+        public void Construct(
+            EnemyStateIdle idle, EnemyStateAttack attack, EnemyStateFollow follow)
         {
-            _stateFactory = stateFactory;
+            _states = new List<IEnemyState>()
+            {
+                // This needs to follow the enum order
+                idle, attack, follow
+            };
         }
 
         public EnemyStates CurrentState
         {
-            get
-            {
-                return _currentState;
-            }
+            get { return _currentState; }
         }
 
         public void Initialize()
         {
             Assert.IsEqual(_currentState, EnemyStates.None);
-            Assert.IsNull(_stateHandler);
+            Assert.IsNull(_currentStateHandler);
 
-            ChangeState(EnemyStates.Idle);
+            ChangeState(EnemyStates.Follow);
         }
 
         public void ChangeState(EnemyStates state)
@@ -57,24 +69,24 @@ namespace Zenject.SpaceFighter
 
             _currentState = state;
 
-            if (_stateHandler != null)
+            if (_currentStateHandler != null)
             {
-                _stateHandler.Dispose();
-                _stateHandler = null;
+                _currentStateHandler.ExitState();
+                _currentStateHandler = null;
             }
 
-            _stateHandler = _stateFactory.Create(state);
-            _stateHandler.Initialize();
+            _currentStateHandler = _states[(int)state];
+            _currentStateHandler.EnterState();
         }
 
         public void Tick()
         {
-            _stateHandler.Update();
+            _currentStateHandler.Update();
         }
 
         public void FixedTick()
         {
-            _stateHandler.FixedUpdate();
+            _currentStateHandler.FixedUpdate();
         }
     }
 }

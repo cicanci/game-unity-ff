@@ -16,13 +16,13 @@ namespace Zenject
         [MenuItem("Edit/Zenject/Validate Current Scenes #%v")]
         public static void ValidateCurrentScene()
         {
-            ValidateInternal();
+            ValidateCurrentSceneInternal();
         }
 
         [MenuItem("Edit/Zenject/Validate Then Run #%r")]
         public static void ValidateCurrentSceneThenRun()
         {
-            if (ValidateInternal())
+            if (ValidateCurrentSceneInternal())
             {
                 EditorApplication.isPlaying = true;
             }
@@ -238,10 +238,9 @@ namespace Zenject
         static void AddCSharpClassTemplate(
             string friendlyName, string defaultFileName, bool editorOnly, string templateStr)
         {
-            var currentDir = ZenUnityEditorUtil.ConvertFullAbsolutePathToAssetPath(
-                ZenUnityEditorUtil.TryGetSelectedFolderPathInProjectsTab());
+            var folderPath = ZenUnityEditorUtil.GetCurrentDirectoryAssetPathFromSelection();
 
-            if (editorOnly && !currentDir.Contains("/Editor"))
+            if (editorOnly && !folderPath.Contains("/Editor"))
             {
                 EditorUtility.DisplayDialog("Error",
                     "Editor window classes must have a parent folder above them named 'Editor'.  Please create or find an Editor folder and try again", "Ok");
@@ -250,7 +249,7 @@ namespace Zenject
 
             var absolutePath = EditorUtility.SaveFilePanel(
                 "Choose name for " + friendlyName,
-                currentDir,
+                folderPath,
                 defaultFileName + ".cs",
                 "cs");
 
@@ -276,7 +275,17 @@ namespace Zenject
             Selection.activeObject = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(assetPath);
         }
 
-        static bool ValidateInternal()
+        [MenuItem("Edit/Zenject/Validate All Active Scenes #%v")]
+        public static void ValidateAllActiveScenes()
+        {
+            ValidateWrapper(() =>
+                {
+                    var numValidated = ZenUnityEditorUtil.ValidateAllActiveScenes();
+                    Log.Info("Validated all '{0}' active scenes successfully", numValidated);
+                });
+        }
+
+        static bool ValidateWrapper(Action action)
         {
             if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
             {
@@ -284,8 +293,7 @@ namespace Zenject
 
                 try
                 {
-                    ZenUnityEditorUtil.ValidateCurrentSceneSetup();
-                    Log.Info("All scenes validated successfully");
+                    action();
                     return true;
                 }
                 catch (Exception e)
@@ -303,6 +311,15 @@ namespace Zenject
                 Debug.Log("Validation cancelled - All scenes must be saved first for validation to take place");
                 return false;
             }
+        }
+
+        static bool ValidateCurrentSceneInternal()
+        {
+            return ValidateWrapper(() =>
+                {
+                    ZenUnityEditorUtil.ValidateCurrentSceneSetup();
+                    Log.Info("All scenes validated successfully");
+                });
         }
     }
 }

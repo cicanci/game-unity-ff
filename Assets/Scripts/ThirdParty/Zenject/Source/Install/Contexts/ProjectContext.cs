@@ -4,6 +4,7 @@ using ModestTree;
 
 using System.Collections.Generic;
 using System.Linq;
+using Zenject.Internal;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -26,18 +27,12 @@ namespace Zenject
 
         public override DiContainer Container
         {
-            get
-            {
-                return _container;
-            }
+            get { return _container; }
         }
 
         public static bool HasInstance
         {
-            get
-            {
-                return _instance != null;
-            }
+            get { return _instance != null; }
         }
 
         public static ProjectContext Instance
@@ -46,11 +41,8 @@ namespace Zenject
             {
                 if (_instance == null)
                 {
-                    _instance = InstantiateNewRoot();
-
-                    // Note: We use Initialize instead of awake here in case someone calls
-                    // ProjectContext.Instance while ProjectContext is initializing
-                    _instance.Initialize();
+                    InstantiateAndInitialize();
+                    Assert.IsNotNull(_instance);
                 }
 
                 return _instance;
@@ -65,6 +57,11 @@ namespace Zenject
         }
 #endif
 
+        public override IEnumerable<GameObject> GetRootGameObjects()
+        {
+            return new[] { this.gameObject };
+        }
+
         public static GameObject TryGetPrefab()
         {
             var prefab = (GameObject)Resources.Load(ProjectContextResourcePath);
@@ -77,29 +74,58 @@ namespace Zenject
             return prefab;
         }
 
-        public static ProjectContext InstantiateNewRoot()
+        static void InstantiateAndInitialize()
         {
             Assert.That(GameObject.FindObjectsOfType<ProjectContext>().IsEmpty(),
                 "Tried to create multiple instances of ProjectContext!");
 
-            ProjectContext instance;
-
             var prefab = TryGetPrefab();
+
+            bool shouldMakeActive = false;
 
             if (prefab == null)
             {
-                instance = new GameObject("ProjectContext")
+                _instance = new GameObject("ProjectContext")
                     .AddComponent<ProjectContext>();
             }
             else
             {
-                instance = GameObject.Instantiate(prefab).GetComponent<ProjectContext>();
+                var wasActive = prefab.activeSelf;
 
-                Assert.IsNotNull(instance,
+                shouldMakeActive = wasActive;
+
+                if (wasActive)
+                {
+                    prefab.SetActive(false);
+                }
+
+                try
+                {
+                    _instance = GameObject.Instantiate(prefab).GetComponent<ProjectContext>();
+                }
+                finally
+                {
+                    if (wasActive)
+                    {
+                        // Always make sure to reset prefab state otherwise this change could be saved
+                        // persistently
+                        prefab.SetActive(true);
+                    }
+                }
+
+                Assert.IsNotNull(_instance,
                     "Could not find ProjectContext component on prefab 'Resources/{0}.prefab'", ProjectContextResourcePath);
             }
 
-            return instance;
+            // Note: We use Initialize instead of awake here in case someone calls
+            // ProjectContext.Instance while ProjectContext is initializing
+            _instance.Initialize();
+
+            if (shouldMakeActive)
+            {
+                // We always instantiate it as disabled so that Awake and Start events are triggered after inject
+                _instance.gameObject.SetActive(true);
+            }
         }
 
         public void EnsureIsInitialized()
@@ -134,8 +160,10 @@ namespace Zenject
             _container = new DiContainer(
                 StaticContext.Container, isValidating);
 
-            _container.LazyInstanceInjector.AddInstances(
-                GetInjectableComponents().Cast<object>());
+            foreach (var instance in GetInjectableMonoBehaviours().Cast<object>())
+            {
+                _container.QueueForInject(instance);
+            }
 
             _container.IsInstalling = true;
 
@@ -148,28 +176,37 @@ namespace Zenject
                 _container.IsInstalling = false;
             }
 
-            _container.LazyInstanceInjector.LazyInjectAll();
+            _container.FlushInjectQueue();
 
             Assert.That(_dependencyRoots.IsEmpty());
 
             _dependencyRoots.AddRange(_container.ResolveDependencyRoots());
         }
 
-        protected override IEnumerable<Component> GetInjectableComponents()
+        protected override IEnumerable<MonoBehaviour> GetInjectableMonoBehaviours()
         {
-            return ContextUtil.GetInjectableComponents(this.gameObject);
+            return ZenUtilInternal.GetInjectableMonoBehaviours(this.gameObject);
         }
 
         void InstallBindings()
         {
             _container.DefaultParent = this.transform;
 
-            _container.Bind(typeof(TickableManager), typeof(InitializableManager), typeof(DisposableManager))
+            // Note that adding GuiRenderableManager here doesn't instantiate it by default
+            // You still have to add GuiRenderer manually
+            // We could add the contents of GuiRenderer into MonoKernel, but this adds
+            // undesirable per-frame allocations.  See comment in IGuiRenderable.cs for usage
+            //
+            // Short answer is if you want to use IGuiRenderable then
+            // you need to include the following in project context installer:
+            // `Container.Bind<GuiRenderer>().FromNewComponentOnNewGameObject().AsSingle().CopyIntoAllSubContainers().NonLazy();`
+            _container.Bind(typeof(TickableManager), typeof(InitializableManager), typeof(DisposableManager), typeof(GuiRenderableManager))
                 .ToSelf().AsSingle().CopyIntoAllSubContainers();
 
+            _container.Bind<SignalManager>().AsSingle();
             _container.Bind<Context>().FromInstance(this);
 
-            _container.Bind<ProjectKernel>().FromComponent(this.gameObject).AsSingle().NonLazy();
+            _container.Bind<ProjectKernel>().FromNewComponentOn(this.gameObject).AsSingle().NonLazy();
 
             InstallSceneBindings();
 

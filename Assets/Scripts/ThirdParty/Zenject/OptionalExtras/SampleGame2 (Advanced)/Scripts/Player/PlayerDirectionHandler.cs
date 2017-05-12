@@ -6,12 +6,12 @@ namespace Zenject.SpaceFighter
 {
     public class PlayerDirectionHandler : ITickable
     {
-        readonly PlayerModel _player;
+        readonly Player _player;
         readonly Camera _mainCamera;
 
         public PlayerDirectionHandler(
             Camera mainCamera,
-            PlayerModel player)
+            Player player)
         {
             _player = player;
             _mainCamera = mainCamera;

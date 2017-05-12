@@ -6,10 +6,11 @@ namespace Zenject.SpaceFighter
 {
     public class EnemyStateFollow : IEnemyState
     {
+        readonly EnemyCommonSettings _commonSettings;
         readonly Settings _settings;
         readonly EnemyTunables _tunables;
         readonly EnemyStateManager _stateManager;
-        readonly EnemyModel _model;
+        readonly Enemy _enemy;
         readonly PlayerFacade _player;
 
         bool _strafeRight;
@@ -17,23 +18,27 @@ namespace Zenject.SpaceFighter
 
         public EnemyStateFollow(
             PlayerFacade player,
-            EnemyModel model,
+            Enemy enemy,
             EnemyStateManager stateManager,
             EnemyTunables tunables,
-            Settings settings)
+            Settings settings,
+            EnemyCommonSettings commonSettings)
         {
+            _commonSettings = commonSettings;
             _settings = settings;
             _tunables = tunables;
             _stateManager = stateManager;
-            _model = model;
+            _enemy = enemy;
             _player = player;
         }
 
-        public void Initialize()
+        public void EnterState()
         {
+            _strafeRight = UnityEngine.Random.Range(0, 1) == 0;
+            _lastStrafeChangeTime = Time.realtimeSinceStartup;
         }
 
-        public void Dispose()
+        public void ExitState()
         {
         }
 
@@ -45,21 +50,10 @@ namespace Zenject.SpaceFighter
                 return;
             }
 
-            var distanceToPlayer = (_player.Position - _model.Position).magnitude;
-
-            Assert.That(_settings.TeleportDistance > _settings.TeleportNewDistance);
-
-            // If they are far enough away, just teleport them to the other side of the player
-            // This is good because otherwise the best strategy is just to keep running away and shooting
-            // and it gets boring
-            if (distanceToPlayer > _settings.TeleportDistance)
-            {
-                var playerDir = (_player.Position - _model.Position).normalized;
-                _model.Position = _player.Position + playerDir * _settings.TeleportNewDistance;
-            }
+            var distanceToPlayer = (_player.Position - _enemy.Position).magnitude;
 
             // Always look towards the player
-            _model.DesiredLookDir = (_player.Position - _model.Position).normalized;
+            _enemy.DesiredLookDir = (_player.Position - _enemy.Position).normalized;
 
             // Strafe back and forth over the given interval
             // This helps avoiding being too easy a target
@@ -69,7 +63,7 @@ namespace Zenject.SpaceFighter
                 _strafeRight = !_strafeRight;
             }
 
-            if (distanceToPlayer < _tunables.AttackDistance)
+            if (distanceToPlayer < _commonSettings.AttackDistance)
             {
                 _stateManager.ChangeState(EnemyStates.Attack);
             }
@@ -86,19 +80,19 @@ namespace Zenject.SpaceFighter
             // Strafe to avoid getting hit too easily
             if (_strafeRight)
             {
-                _model.AddForce(_model.RightDir * _settings.StrafeMultiplier * _model.MoveSpeed);
+                _enemy.AddForce(_enemy.RightDir * _settings.StrafeMultiplier * _tunables.Speed);
             }
             else
             {
-                _model.AddForce(-_model.RightDir * _settings.StrafeMultiplier * _model.MoveSpeed);
+                _enemy.AddForce(-_enemy.RightDir * _settings.StrafeMultiplier * _tunables.Speed);
             }
         }
 
         void MoveTowardsPlayer()
         {
-            var playerDir = (_player.Position - _model.Position).normalized;
+            var playerDir = (_player.Position - _enemy.Position).normalized;
 
-            _model.AddForce(playerDir * _model.MoveSpeed);
+            _enemy.AddForce(playerDir * _tunables.Speed);
         }
 
         [Serializable]
@@ -106,7 +100,6 @@ namespace Zenject.SpaceFighter
         {
             public float StrafeMultiplier;
             public float StrafeChangeInterval;
-            public float TeleportDistance;
             public float TeleportNewDistance;
         }
     }

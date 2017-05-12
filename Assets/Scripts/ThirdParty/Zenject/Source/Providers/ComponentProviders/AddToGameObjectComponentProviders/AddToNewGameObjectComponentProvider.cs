@@ -23,10 +23,10 @@ namespace Zenject
         {
             if (_gameObjectBindInfo.Name == null)
             {
-                _gameObjectBindInfo.Name = ConcreteIdentifier as string ?? ComponentType.Name();
+                _gameObjectBindInfo.Name = ConcreteIdentifier as string ?? ComponentType.Name;
             }
 
-            return Container.CreateEmptyGameObject(_gameObjectBindInfo);
+            return Container.CreateEmptyGameObject(_gameObjectBindInfo, context);
         }
     }
 }
