@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace FinalFrontier.Game.Camera
 {
@@ -41,9 +39,10 @@ namespace FinalFrontier.Game.Camera
             }
 
             Vector3 forward = TargetToFollow.forward * TargetDistance;
-            Vector3 targetPosition = TargetToFollow.position - forward + Offset;
+            Vector3 targetPosition = TargetToFollow.position - forward;
 
             // Lerp seems to be smoother than the SmootDamp
+            //Vector3 velocity = Vector3.zero;
             //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, SmoothTime);
             transform.position = Vector3.Lerp(transform.position, targetPosition, SmoothTime);
             transform.rotation = TargetToFollow.rotation;
