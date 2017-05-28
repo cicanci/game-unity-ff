@@ -10,7 +10,7 @@ namespace FinalFrontier.Game.UI.Util
         public Text AverageFPS;
         public Text LowestFPS;
 
-        public int _frameRange = 60;
+        private const int _frameRange = 60;
         private int[] _fpsBuffer;
         private int _fpsBufferIndex;
         private int _fpsHigh;
