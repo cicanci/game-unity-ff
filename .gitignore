@@ -17,9 +17,13 @@ ExportedObj/
 *.booproj
 *.svd
 
-
 # Unity3D generated meta files
 *.pidb.meta
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
+
+# Rider stuff
+.idea
+_ReSharper.Caches*
+
