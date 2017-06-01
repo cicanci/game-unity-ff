@@ -6,12 +6,10 @@ namespace FinalFrontier.Game.Camera
     {
         [Tooltip("If the target is not set, the script will look for an object with Player tag")]
         public Transform TargetToFollow;
-        [Range(0, 1)]
+        [Range(0, 100)]
         public float SmoothTime;
-
+        [Range(0, 100)]
         public float TargetDistance;
-
-        public Vector3 Offset;
 
         private void Awake()
         {
@@ -19,7 +17,7 @@ namespace FinalFrontier.Game.Camera
             {
                 return;
             }
-            
+
             var player = GameObject.FindGameObjectWithTag("Player");
             if (player == null)
             {
@@ -38,17 +36,9 @@ namespace FinalFrontier.Game.Camera
                 return;
             }
 
-            Vector3 forward = TargetToFollow.forward * TargetDistance;
-            Vector3 targetPosition = TargetToFollow.position - forward;
-
-            // Lerp seems to be smoother than the SmootDamp
-            //Vector3 velocity = Vector3.zero;
-            //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, SmoothTime);
-            transform.position = Vector3.Lerp(transform.position, targetPosition, SmoothTime);
+            Vector3 targetPosition = TargetToFollow.position - (TargetToFollow.forward * TargetDistance);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, SmoothTime * Time.deltaTime);
             transform.rotation = TargetToFollow.rotation;
-
-            // LookAt is causing the camera to flip, I'll keep it commented here
-            //transform.LookAt(TargetToFollow);
         }
     }
 }
