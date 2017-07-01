@@ -14,8 +14,11 @@ namespace FinalFrontier.Game.Spaceship
 
         private void SpaceshipRotation()
         {
-            float h = Input.GetAxis("Horizontal") * Time.deltaTime * MovementSpeed;
-            float v = Input.GetAxis("Vertical") * Time.deltaTime * -MovementSpeed;
+            float horizontalAxis = Input.GetAxis("Horizontal");
+            float verticalAxis = Input.GetAxis("Vertical");
+            
+            float h = horizontalAxis * Time.deltaTime * MovementSpeed;
+            float v = verticalAxis * Time.deltaTime * -MovementSpeed;
             transform.Rotate(v, h, 0);
         }
 
