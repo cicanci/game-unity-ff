@@ -30,10 +30,7 @@ namespace Zenject
 
         public IEnumerable<MonoInstaller> Installers
         {
-            get
-            {
-                return _installers;
-            }
+            get { return _installers; }
             set
             {
                 _installers.Clear();
@@ -43,10 +40,7 @@ namespace Zenject
 
         public IEnumerable<MonoInstaller> InstallerPrefabs
         {
-            get
-            {
-                return _installerPrefabs;
-            }
+            get { return _installerPrefabs; }
             set
             {
                 _installerPrefabs.Clear();
@@ -56,10 +50,7 @@ namespace Zenject
 
         public IEnumerable<ScriptableObjectInstaller> ScriptableObjectInstallers
         {
-            get
-            {
-                return _scriptableObjectInstallers;
-            }
+            get { return _scriptableObjectInstallers; }
             set
             {
                 _scriptableObjectInstallers.Clear();
@@ -70,10 +61,7 @@ namespace Zenject
         // Unlike other installer types this has to be set through code
         public IEnumerable<InstallerBase> NormalInstallers
         {
-            get
-            {
-                return _normalInstallers;
-            }
+            get { return _normalInstallers; }
             set
             {
                 _normalInstallers.Clear();
@@ -85,15 +73,17 @@ namespace Zenject
         {
             get;
         }
+        public abstract IEnumerable<GameObject> GetRootGameObjects();
+
 
         public void AddNormalInstaller(InstallerBase installer)
         {
             _normalInstallers.Add(installer);
         }
 
-        void CheckInstallerPrefabTypes()
+        void CheckInstallerPrefabTypes(List<MonoInstaller> installers, List<MonoInstaller> installerPrefabs)
         {
-            foreach (var installer in _installers)
+            foreach (var installer in installers)
             {
                 Assert.IsNotNull(installer, "Found null installer in Context '{0}'", this.name);
 
@@ -103,7 +93,7 @@ namespace Zenject
 #endif
             }
 
-            foreach (var installerPrefab in _installerPrefabs)
+            foreach (var installerPrefab in installerPrefabs)
             {
                 Assert.IsNotNull(installerPrefab, "Found null prefab in Context");
 
@@ -119,7 +109,16 @@ namespace Zenject
 
         protected void InstallInstallers()
         {
-            CheckInstallerPrefabTypes();
+            InstallInstallers(_normalInstallers, _scriptableObjectInstallers, _installers, _installerPrefabs);
+        }
+
+        protected void InstallInstallers(
+            List<InstallerBase> normalInstallers,
+            List<ScriptableObjectInstaller> scriptableObjectInstallers,
+            List<MonoInstaller> installers,
+            List<MonoInstaller> installerPrefabs)
+        {
+            CheckInstallerPrefabTypes(installers, installerPrefabs);
 
             // Ideally we would just have one flat list of all the installers
             // since that way the user has complete control over the order, but
@@ -139,12 +138,12 @@ namespace Zenject
             // ScriptableObjectInstallers are often used for settings (including settings
             // that are injected into other installers like MonoInstallers)
 
-            var allInstallers = _normalInstallers.Cast<IInstaller>()
-                .Concat(_scriptableObjectInstallers.Cast<IInstaller>()).Concat(_installers.Cast<IInstaller>()).ToList();
+            var allInstallers = normalInstallers.Cast<IInstaller>()
+                .Concat(scriptableObjectInstallers.Cast<IInstaller>()).Concat(installers.Cast<IInstaller>()).ToList();
 
-            foreach (var installerPrefab in _installerPrefabs)
+            foreach (var installerPrefab in installerPrefabs)
             {
-                Assert.IsNotNull(installerPrefab, "Found null installer prefab in '{0}'", this.GetType().Name());
+                Assert.IsNotNull(installerPrefab, "Found null installer prefab in '{0}'", this.GetType());
 
                 var installerGameObject = GameObject.Instantiate(installerPrefab.gameObject);
                 installerGameObject.transform.SetParent(this.transform, false);
@@ -158,7 +157,7 @@ namespace Zenject
             foreach (var installer in allInstallers)
             {
                 Assert.IsNotNull(installer,
-                    "Found null installer in '{0}'", this.GetType().Name());
+                    "Found null installer in '{0}'", this.GetType());
 
                 Container.Inject(installer);
                 installer.InstallBindings();
@@ -167,7 +166,7 @@ namespace Zenject
 
         protected void InstallSceneBindings()
         {
-            foreach (var binding in GetInjectableComponents().OfType<ZenjectBinding>())
+            foreach (var binding in GetInjectableMonoBehaviours().OfType<ZenjectBinding>())
             {
                 if (binding == null)
                 {
@@ -242,12 +241,12 @@ namespace Zenject
                     }
                     case ZenjectBinding.BindTypes.AllInterfaces:
                     {
-                        Container.BindAllInterfaces(componentType).WithId(identifier).FromInstance(component, true);
+                        Container.Bind(componentType.Interfaces().ToArray()).WithId(identifier).FromInstance(component, true);
                         break;
                     }
                     case ZenjectBinding.BindTypes.AllInterfacesAndSelf:
                     {
-                        Container.BindAllInterfacesAndSelf(componentType).WithId(identifier).FromInstance(component, true);
+                        Container.Bind(componentType.Interfaces().Append(componentType).ToArray()).WithId(identifier).FromInstance(component, true);
                         break;
                     }
                     default:
@@ -258,7 +257,7 @@ namespace Zenject
             }
         }
 
-        protected abstract IEnumerable<Component> GetInjectableComponents();
+        protected abstract IEnumerable<MonoBehaviour> GetInjectableMonoBehaviours();
     }
 }
 

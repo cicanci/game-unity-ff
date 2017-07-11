@@ -19,66 +19,42 @@ namespace Zenject.Asteroids
 
         public float Bottom
         {
-            get
-            {
-                return -ExtentHeight;
-            }
+            get { return -ExtentHeight; }
         }
 
         public float Top
         {
-            get
-            {
-                return ExtentHeight;
-            }
+            get { return ExtentHeight; }
         }
 
         public float Left
         {
-            get
-            {
-                return -ExtentWidth;
-            }
+            get { return -ExtentWidth; }
         }
 
         public float Right
         {
-            get
-            {
-                return ExtentWidth;
-            }
+            get { return ExtentWidth; }
         }
 
         public float ExtentHeight
         {
-            get
-            {
-                return _camera.orthographicSize;
-            }
+            get { return _camera.orthographicSize; }
         }
 
         public float Height
         {
-            get
-            {
-                return ExtentHeight * 2.0f;
-            }
+            get { return ExtentHeight * 2.0f; }
         }
 
         public float ExtentWidth
         {
-            get
-            {
-                return _camera.aspect * _camera.orthographicSize;
-            }
+            get { return _camera.aspect * _camera.orthographicSize; }
         }
 
         public float Width
         {
-            get
-            {
-                return ExtentWidth * 2.0f;
-            }
+            get { return ExtentWidth * 2.0f; }
         }
     }
 }

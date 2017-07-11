@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using System.Collections;
 using Zenject;
 
 namespace Zenject.SpaceFighter
@@ -13,33 +14,29 @@ namespace Zenject.SpaceFighter
 
         public override void InstallBindings()
         {
-            Container.BindAllInterfaces<CameraHandler>().To<CameraHandler>().AsSingle();
+            Container.DeclareSignal<EnemyKilledSignal>();
+            Container.DeclareSignal<PlayerDiedSignal>();
 
-            Container.BindSignal<PlayerKilledSignal>();
-            Container.BindSignal<EnemyKilledSignal>();
+            Container.BindInterfacesTo<EnemySpawner>().AsSingle();
 
-            Container.BindAllInterfaces<EnemySpawner>().To<EnemySpawner>().AsSingle();
-
-            Container.BindFactory<EnemyTunables, EnemyFacade, EnemyFacade.Factory>()
+            Container.BindMemoryPool<EnemyFacade, EnemyFacade.Pool>()
                 .FromSubContainerResolve()
-                .ByPrefab<EnemyInstaller>(_settings.EnemyFacadePrefab)
+                .ByNewPrefab(_settings.EnemyFacadePrefab)
                 .UnderTransformGroup("Enemies");
 
-            Container.BindAllInterfaces<GameDifficultyHandler>().To<GameDifficultyHandler>().AsSingle();
-
-            Container.Bind<EnemyRegistry>().AsSingle();
-
-            Container.BindFactory<float, float, BulletTypes, Bullet, Bullet.Factory>()
-                .FromPrefab(_settings.BulletPrefab)
+            Container.BindMemoryPool<Bullet, Bullet.Pool>().WithInitialSize(10).ExpandByDoubling()
+                .FromComponentInNewPrefab(_settings.BulletPrefab)
                 .UnderTransformGroup("Bullets");
 
-            Container.BindFactory<Explosion, Explosion.Factory>()
-                .FromPrefab(_settings.ExplosionPrefab)
+            Container.Bind<LevelBoundary>().AsSingle();
+
+            Container.BindMemoryPool<Explosion, Explosion.Pool>().WithInitialSize(3)
+                .FromComponentInNewPrefab(_settings.ExplosionPrefab)
                 .UnderTransformGroup("Explosions");
 
             Container.Bind<AudioPlayer>().AsSingle();
 
-            Container.BindAllInterfaces<GameRestartHandler>().To<GameRestartHandler>().AsSingle();
+            Container.BindInterfacesTo<GameRestartHandler>().AsSingle();
         }
 
         [Serializable]

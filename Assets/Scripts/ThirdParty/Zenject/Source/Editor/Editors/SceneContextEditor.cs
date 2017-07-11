@@ -2,6 +2,7 @@ using UnityEditor;
 
 namespace Zenject
 {
+    [CanEditMultipleObjects]
     [CustomEditor(typeof(SceneContext))]
     public class SceneContextEditor : ContextEditor
     {

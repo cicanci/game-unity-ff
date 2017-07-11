@@ -26,33 +26,35 @@ namespace Zenject.SpaceFighter
         [SerializeField]
         Material _enemyMaterial = null;
 
-        // Since we are a MonoBehaviour, we can't use a constructor
-        // So use PostInject instead
         [Inject]
-        public void Construct(float speed, float lifeTime, BulletTypes type)
-        {
-            _type = type;
-            _speed = speed;
-            _lifeTime = lifeTime;
-
-            _renderer.material = type == BulletTypes.FromEnemy ? _enemyMaterial : _playerMaterial;
-
-            _startTime = Time.realtimeSinceStartup;
-        }
+        Pool _bulletPool;
 
         public BulletTypes Type
         {
-            get
-            {
-                return _type;
-            }
+            get { return _type; }
         }
 
         public Vector3 MoveDirection
         {
-            get
+            get { return transform.right; }
+        }
+
+        public void OnTriggerEnter(Collider other)
+        {
+            var enemy = other.GetComponent<EnemyFacade>();
+
+            if (enemy != null && _type == BulletTypes.FromPlayer)
             {
-                return transform.right;
+                enemy.Die();
+                this.Despawn();
+            }
+
+            var player = other.GetComponent<PlayerFacade>();
+
+            if (player != null && _type == BulletTypes.FromEnemy)
+            {
+                player.TakeDamage(this.MoveDirection);
+                this.Despawn();
             }
         }
 
@@ -62,12 +64,27 @@ namespace Zenject.SpaceFighter
 
             if (Time.realtimeSinceStartup - _startTime > _lifeTime)
             {
-                GameObject.Destroy(this.gameObject);
+                Despawn();
             }
         }
 
-        public class Factory : Factory<float, float, BulletTypes, Bullet>
+        public void Despawn()
         {
+            _bulletPool.Despawn(this);
+        }
+
+        public class Pool : MonoMemoryPool<float, float, BulletTypes, Bullet>
+        {
+            protected override void Reinitialize(float speed, float lifeTime, BulletTypes type, Bullet bullet)
+            {
+                bullet._type = type;
+                bullet._speed = speed;
+                bullet._lifeTime = lifeTime;
+
+                bullet._renderer.material = type == BulletTypes.FromEnemy ? bullet._enemyMaterial : bullet._playerMaterial;
+
+                bullet._startTime = Time.realtimeSinceStartup;
+            }
         }
     }
 }

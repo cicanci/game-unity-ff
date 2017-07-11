@@ -8,7 +8,6 @@ namespace Zenject.Asteroids
 {
     public class Asteroid : MonoBehaviour
     {
-        bool _hasDisposed;
         LevelHelper _level;
         Rigidbody _rigidBody;
         Settings _settings;
@@ -27,26 +26,14 @@ namespace Zenject.Asteroids
 
         public Vector3 Position
         {
-            get
-            {
-                return transform.position;
-            }
-            set
-            {
-                transform.position = value;
-            }
+            get { return transform.position; }
+            set { transform.position = value; }
         }
 
         public float Mass
         {
-            get
-            {
-                return _rigidBody.mass;
-            }
-            set
-            {
-                _rigidBody.mass = value;
-            }
+            get { return _rigidBody.mass; }
+            set { _rigidBody.mass = value; }
         }
 
         public float Scale
@@ -68,14 +55,8 @@ namespace Zenject.Asteroids
 
         public Vector3 Velocity
         {
-            get
-            {
-                return _rigidBody.velocity;
-            }
-            set
-            {
-                _rigidBody.velocity = value;
-            }
+            get { return _rigidBody.velocity; }
+            set { _rigidBody.velocity = value; }
         }
 
         public void FixedTick()
@@ -93,13 +74,6 @@ namespace Zenject.Asteroids
         public void Tick()
         {
             CheckForTeleport();
-        }
-
-        public void Dispose()
-        {
-            Assert.That(!_hasDisposed);
-            _hasDisposed = true;
-            GameObject.Destroy(gameObject);
         }
 
         void CheckForTeleport()

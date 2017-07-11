@@ -6,65 +6,48 @@ namespace Zenject.SpaceFighter
 {
     public class EnemyFacade : MonoBehaviour
     {
-        EnemyModel _model;
-        EnemyRegistry _enemyRegistry;
-        EnemyStateManager _stateManager;
+        Enemy _enemy;
+        EnemyTunables _tunables;
+        EnemyDeathHandler _deathHandler;
 
         // We can't use a constructor here because MonoFacade derives from
         // MonoBehaviour
         [Inject]
         public void Construct(
-            EnemyModel model, EnemyRegistry registry, EnemyStateManager stateManager)
+            Enemy enemy, EnemyTunables tunables,
+            EnemyDeathHandler deathHandler)
         {
-            _model = model;
-            _enemyRegistry = registry;
-            _stateManager = stateManager;
-
-            registry.AddEnemy(this);
+            _enemy = enemy;
+            _tunables = tunables;
+            _deathHandler = deathHandler;
         }
 
         // Here we can add some high-level methods to give some info to other
         // parts of the codebase outside of our enemy facade
-        public bool IsAttacking
-        {
-            get
-            {
-                return _stateManager.CurrentState == EnemyStates.Attack;
-            }
-        }
-
-        public bool IsChasing
-        {
-            get
-            {
-                return _stateManager.CurrentState == EnemyStates.Follow;
-            }
-        }
-
         public Vector3 Position
         {
-            get
-            {
-                return _model.Position;
-            }
-            set
-            {
-                _model.Position = value;
-            }
+            get { return _enemy.Position; }
+            set { _enemy.Position = value; }
         }
 
-        public void OnDestroy()
+        public void Update()
         {
-            _enemyRegistry.RemoveEnemy(this);
+            // Always ensure we are on the main plane
+            _enemy.Position = new Vector3(_enemy.Position.x, _enemy.Position.y, 0);
         }
 
-        // Here we declare a parameter to our facade factory of type EnemyTunables
-        // Note that unlike for normal factories, this parameter gets injected into
-        // an installer instead of the EnemyFacade class itself
-        // It's done this way because in some cases we want to add the arguments
-        // to the container for use by other classes within the facade
-        public class Factory : Factory<EnemyTunables, EnemyFacade>
+        public void Die()
         {
+            _deathHandler.Die();
+        }
+
+        public class Pool : MonoMemoryPool<EnemyTunables, EnemyFacade>
+        {
+            protected override void Reinitialize(EnemyTunables tunables, EnemyFacade enemy)
+            {
+                enemy._tunables.Accuracy = tunables.Accuracy;
+                enemy._tunables.Speed = tunables.Speed;
+            }
         }
     }
 }

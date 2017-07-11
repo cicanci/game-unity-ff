@@ -9,26 +9,26 @@ namespace Zenject.SpaceFighter
     {
         readonly Settings _settings;
 
-        PlayerKilledSignal _killedSignal;
+        PlayerDiedSignal _playerDiedSignal;
         bool _isDelaying;
         float _delayStartTime;
 
         public GameRestartHandler(
             Settings settings,
-            PlayerKilledSignal killedSignal)
+            PlayerDiedSignal playerDiedSignal)
         {
-            _killedSignal = killedSignal;
+            _playerDiedSignal = playerDiedSignal;
             _settings = settings;
         }
 
         public void Initialize()
         {
-            _killedSignal += OnPlayerKilled;
+            _playerDiedSignal += OnPlayerDied;
         }
 
         public void Dispose()
         {
-            _killedSignal -= OnPlayerKilled;
+            _playerDiedSignal -= OnPlayerDied;
         }
 
         public void Tick()
@@ -42,7 +42,7 @@ namespace Zenject.SpaceFighter
             }
         }
 
-        void OnPlayerKilled()
+        void OnPlayerDied()
         {
             // Wait a bit before restarting the scene
             _delayStartTime = Time.realtimeSinceStartup;

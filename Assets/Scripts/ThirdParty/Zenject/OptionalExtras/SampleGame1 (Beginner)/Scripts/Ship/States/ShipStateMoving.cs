@@ -74,12 +74,12 @@ namespace Zenject.Asteroids
         public override void Start()
         {
             _lastPosition = _ship.Position;
-            _ship.ParticleEmitter.Play();
+            //_ship.ParticleEmitter.emit = true;
         }
 
-        public override void Stop()
+        public override void Dispose()
         {
-            _ship.ParticleEmitter.Stop();
+            //_ship.ParticleEmitter.emit = false;
         }
 
         public override void OnTriggerEnter(Collider other)

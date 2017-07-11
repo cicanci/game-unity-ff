@@ -10,41 +10,34 @@ namespace Zenject.Asteroids
         readonly Settings _settings;
         readonly Ship _ship;
 
-        float _elapsedTime;
+        float _theta;
 
-        public ShipStateWaitingToStart(Settings settings, Ship ship)
+        public ShipStateWaitingToStart(
+            Ship ship,
+            Settings settings)
         {
-            _ship = ship;
             _settings = settings;
+            _ship = ship;
         }
 
         public override void Start()
         {
-            _ship.Position = Vector3.zero;
+            _ship.Position = _settings.StartOffset;
             _ship.Rotation = Quaternion.AngleAxis(90.0f, Vector3.up) * Quaternion.AngleAxis(90.0f, Vector3.right);
-        }
-
-        public override void Stop()
-        {
-            _ship.MeshRenderer.material.color = Color.white;
         }
 
         public override void Update()
         {
-            _elapsedTime += Time.deltaTime;
-
-            var timeForOneCycle = 1.0f / _settings.blinkRate;
-            var theta = 2.0f * Mathf.PI * _elapsedTime / timeForOneCycle;
-
-            var px = (Mathf.Cos(theta) + 1.0f) / 2.0f;
-
-            _ship.MeshRenderer.material.color = new Color(1.0f, 1.0f, 1.0f, px);
+            _ship.Position = _settings.StartOffset + Vector3.up * _settings.Amplitude * Mathf.Sin(_theta);
+            _theta += Time.deltaTime * _settings.Frequency;
         }
 
         [Serializable]
         public class Settings
         {
-            public float blinkRate;
+            public Vector3 StartOffset;
+            public float Amplitude;
+            public float Frequency;
         }
 
         public class Factory : Factory<ShipStateWaitingToStart>

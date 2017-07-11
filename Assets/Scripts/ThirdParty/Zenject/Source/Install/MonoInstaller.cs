@@ -140,7 +140,14 @@ namespace Zenject
             string resourcePath, DiContainer container)
             where TInstaller : MonoInstallerBase
         {
-            var gameObj = container.CreateAndParentPrefabResource(resourcePath, new GameObjectCreationParameters());
+            bool shouldMakeActive;
+            var gameObj = container.CreateAndParentPrefabResource(
+                resourcePath, GameObjectCreationParameters.Default, null, out shouldMakeActive);
+
+            if (shouldMakeActive)
+            {
+                gameObj.SetActive(true);
+            }
 
             var installers = gameObj.GetComponentsInChildren<TInstaller>();
 

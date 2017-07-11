@@ -12,6 +12,9 @@ namespace Zenject.SpaceFighter
         float _lifeTime;
 
         [SerializeField]
+        ParticleSystem _particleSystem;
+
+        [SerializeField]
         AudioClip _sound;
 
         [SerializeField]
@@ -20,23 +23,25 @@ namespace Zenject.SpaceFighter
         float _startTime;
 
         [Inject]
-        public void Construct(AudioPlayer audioPlayer)
-        {
-            _startTime = Time.realtimeSinceStartup;
-
-            audioPlayer.Play(_sound, _soundVolume);
-        }
+        Pool _pool;
 
         public void Update()
         {
             if (Time.realtimeSinceStartup - _startTime > _lifeTime)
             {
-                GameObject.Destroy(this.gameObject);
+                _pool.Despawn(this);
             }
         }
 
-        public class Factory : Factory<Explosion>
+        public class Pool : MonoMemoryPool<Explosion>
         {
+            protected override void Reinitialize(Explosion explosion)
+            {
+                explosion._particleSystem.Clear();
+                explosion._particleSystem.Play();
+
+                explosion._startTime = Time.realtimeSinceStartup;
+            }
         }
     }
 }

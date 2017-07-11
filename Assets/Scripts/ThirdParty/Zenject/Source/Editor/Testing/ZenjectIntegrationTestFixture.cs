@@ -3,19 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+#if UNITY_5_6
+using NUnit.Framework.Interfaces;
+#endif
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using ModestTree;
 using Assert = ModestTree.Assert;
-using NUnit.Framework.Interfaces;
 
 namespace Zenject
 {
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public class ValidateOnlyAttribute : Attribute
-    {
-    }
-
     public abstract class ZenjectIntegrationTestFixture
     {
         SceneContext _sceneContext;
@@ -25,16 +22,22 @@ namespace Zenject
 
         protected DiContainer Container
         {
-            get
-            {
-                return _sceneContext.Container;
-            }
+            get { return _sceneContext.Container; }
+        }
+
+        protected SceneContext SceneContext
+        {
+            get { return _sceneContext; }
         }
 
         [SetUp]
-        public void SetUp()
+        public virtual void SetUp()
         {
-            ClearScene();
+            // Don't clear the scene to allow tests to initialize the scene how they
+            // want to set it up manually in their own [Setup] method (eg. TestFromComponentInChildren)
+            // Also, I think unity might already clear the scene anyway?
+            //ClearScene();
+
             _hasStarted = false;
             _isValidating = CurrentTestHasAttribute<ValidateOnlyAttribute>();
 
@@ -58,7 +61,7 @@ namespace Zenject
 
             if (_isValidating)
             {
-                Container.ValidateIValidatables();
+                Container.ValidateValidatables();
             }
             else
             {
@@ -69,15 +72,22 @@ namespace Zenject
         [TearDown]
         public void TearDown()
         {
+#if UNITY_5_6
             if (TestContext.CurrentContext.Result.Outcome == ResultState.Success)
+            {
+                Assert.That(_hasStarted, "ZenjectIntegrationTestFixture.Initialize was not called by current test");
+            }
+#else
+            if (TestContext.CurrentContext.Result.Status == TestStatus.Passed)
             {
                 // If we expected an exception then initialize would normally not be called
                 // Unless the initialize method itself is what caused the exception
-                //if (!CurrentTestHasAttribute<ExpectedExceptionAttribute>())
-                //{
-                //    Assert.That(_hasStarted, "ZenjectIntegrationTestFixture.Initialize was not called by current test");
-                //}
+                if (!CurrentTestHasAttribute<ExpectedExceptionAttribute>())
+                {
+                    Assert.That(_hasStarted, "ZenjectIntegrationTestFixture.Initialize was not called by current test");
+                }
             }
+#endif
 
             ClearScene();
         }
@@ -85,14 +95,25 @@ namespace Zenject
         bool CurrentTestHasAttribute<T>()
             where T : Attribute
         {
-            var fullMethodName = TestContext.CurrentContext.Test.FullName;
-            var name = fullMethodName.Substring(fullMethodName.LastIndexOf(".")+1);
+            // tests with double parameters need to have their () removed first
+            var name = TestContext.CurrentContext.Test.FullName;
+
+            // Remove all characters after the first open bracket if there is one
+            int openBracketIndex = name.IndexOf("(");
+
+            if (openBracketIndex != -1)
+            {
+                name = name.Substring(0, openBracketIndex);
+            }
+
+            // Now we can get the substring starting at the last '.'
+            name = name.Substring(name.LastIndexOf(".") + 1);
 
             return this.GetType().GetMethod(name).GetCustomAttributes(true)
                 .Cast<Attribute>().OfType<T>().Any();
         }
 
-        void ClearScene()
+        protected void ClearScene()
         {
             var scene = EditorSceneManager.GetActiveScene();
 
@@ -108,3 +129,4 @@ namespace Zenject
         }
     }
 }
+

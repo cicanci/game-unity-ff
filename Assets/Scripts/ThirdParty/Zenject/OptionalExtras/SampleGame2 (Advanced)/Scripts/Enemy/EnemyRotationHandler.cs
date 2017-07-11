@@ -10,20 +10,20 @@ namespace Zenject.SpaceFighter
     public class EnemyRotationHandler : IFixedTickable
     {
         readonly Settings _settings;
-        readonly EnemyModel _model;
+        readonly Enemy _enemy;
 
         public EnemyRotationHandler(
-            EnemyModel model,
+            Enemy enemy,
             Settings settings)
         {
             _settings = settings;
-            _model = model;
+            _enemy = enemy;
         }
 
         public void FixedTick()
         {
-            var lookDir = _model.LookDir;
-            var goalDir = _model.DesiredLookDir;
+            var lookDir = _enemy.LookDir;
+            var goalDir = _enemy.DesiredLookDir;
 
             var error = Vector3.Angle(lookDir, goalDir);
 
@@ -32,7 +32,7 @@ namespace Zenject.SpaceFighter
                 error *= -1;
             }
 
-            _model.AddTorque(error * _settings.TurnSpeed);
+            _enemy.AddTorque(error * _settings.TurnSpeed);
         }
 
         [Serializable]

@@ -4,15 +4,19 @@ This game is currently in development by [me](http://cicanci.com).
 
 ## Tools
 
-[Blender](https://www.blender.org/) 2.77a
+[Blender](https://www.blender.org/)
 
-[Unity](http://unity3d.com) 5.6.0f3
+[Rider](https://www.jetbrains.com/rider/)
+
+[Unity](http://unity3d.com)
 
 ## Free assets used
 
 [Astra Starship Fleet Package](https://www.assetstore.unity3d.com/en/#!/content/4392)
 
 [Frictionless](https://github.com/Claytonious/Frictionless)
+
+[Modular Spaceship 1: StarSparrow](https://www.assetstore.unity3d.com/en/#!/content/73167)
 
 [Skybox Volume 2 (Nebula)](https://www.assetstore.unity3d.com/en/#!/content/3392)
 
