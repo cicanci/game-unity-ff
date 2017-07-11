@@ -4,9 +4,11 @@ This game is currently in development by [me](http://cicanci.com).
 
 ## Tools
 
-[Blender](https://www.blender.org/) 2.77a
+[Blender](https://www.blender.org/)
 
-[Unity](http://unity3d.com) 5.6.0f3
+[Rider](https://www.jetbrains.com/rider/)
+
+[Unity](http://unity3d.com)
 
 ## Free assets used
 
