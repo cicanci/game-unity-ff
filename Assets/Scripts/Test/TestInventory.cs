@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace Playground
+namespace Test
 {
     public enum UIType
     {

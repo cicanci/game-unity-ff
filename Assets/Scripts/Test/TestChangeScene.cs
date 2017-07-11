@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
-namespace Playground
+namespace Test
 {
     public enum CursorType
     {

@@ -1,29 +1,29 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Frictionless;
 using Game.Data;
+using UnityEngine;
+using UnityEngine.UI;
 
-namespace Playground
+namespace Test
 {
-	public class TestItemButton : MonoBehaviour
-	{
-		public int slodID;
+    public class TestItemButton : MonoBehaviour
+    {
+        public int slodID;
 
-		void Start()
-		{
-			DataManager dataManager = ServiceFactory.Instance.Resolve<DataManager>();
-			string upgradeItemID = dataManager.GameData.ShipSlot[slodID, 0];
+        void Start()
+        {
+            DataManager dataManager = ServiceFactory.Instance.Resolve<DataManager>();
+            string upgradeItemID = dataManager.GameData.ShipSlot[slodID, 0];
 
-			if (!string.IsNullOrEmpty(upgradeItemID))
-			{
-				List<UpgradeItem> upgradeItemList = dataManager.UpgradeItemList.itemList;
-				UpgradeItem upgradeItem = upgradeItemList.Find(i => i.ItemID == upgradeItemID);
+            if (!string.IsNullOrEmpty(upgradeItemID))
+            {
+                List<UpgradeItem> upgradeItemList = dataManager.UpgradeItemList.itemList;
+                UpgradeItem upgradeItem = upgradeItemList.Find(i => i.ItemID == upgradeItemID);
 
-				GameObject item = Instantiate(upgradeItem.ItemPrefab) as GameObject;
-				item.transform.SetParent(transform.parent, false);
-				item.GetComponentInChildren<Text>().text = upgradeItem.GetName();
-			}
-		}
-	}
+                GameObject item = Instantiate(upgradeItem.ItemPrefab) as GameObject;
+                item.transform.SetParent(transform.parent, false);
+                item.GetComponentInChildren<Text>().text = upgradeItem.GetName();
+            }
+        }
+    }
 }

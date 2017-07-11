@@ -7,6 +7,11 @@ namespace Game
     {
         private void Start() 
         {
+            if (Application.isEditor)
+            {
+                Application.runInBackground = true;
+            }
+
             SceneManager.LoadScene(GameConstants.SCENE_LOADING);
         }
     }

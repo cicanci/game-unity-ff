@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
-namespace Playground
+namespace Test
 {
     public class TestShoot : MonoBehaviour
     {
