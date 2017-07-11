@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace FinalFrontier.Game.UI.Util
+namespace Game.UI.Util
 {
     // FPS Conter implemented based on this tutorial: http://catlikecoding.com/unity/tutorials/frames-per-second/
     public class FPSCounter : MonoBehaviour

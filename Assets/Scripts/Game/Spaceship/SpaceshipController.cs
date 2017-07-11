@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FinalFrontier.Game.Spaceship
+namespace Game.Spaceship
 {
     public class SpaceshipController : MonoBehaviour 
     {
