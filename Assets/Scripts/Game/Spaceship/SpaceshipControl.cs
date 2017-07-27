@@ -2,7 +2,7 @@
 
 namespace Game.Spaceship
 {
-    public class SpaceshipController : MonoBehaviour 
+    public class SpaceshipControl : MonoBehaviour 
     {
         public float MovementSpeed;
 
