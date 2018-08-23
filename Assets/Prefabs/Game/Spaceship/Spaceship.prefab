@@ -224,6 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4825083313986526}
   - component: {fileID: 114891104654452048}
+  - component: {fileID: 114421110761453126}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -1135,6 +1136,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1476367839967640}
   m_Mesh: {fileID: 4300020, guid: 6f6b397918ef75c499a826247372b18c, type: 3}
+--- !u!114 &114421110761453126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1939554209595754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84826b663a85e64458c4d717ee92a55e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amplitude: 0.1
+  _speed: 0.5
 --- !u!114 &114891104654452048
 MonoBehaviour:
   m_ObjectHideFlags: 1
