@@ -8,7 +8,7 @@ namespace Game.Loading
     public class GameLoading : MonoBehaviour
     {
         public Text LoadingText;
-        public int FakeLoadingTime = 3;
+        public int FakeLoadingTime = 1;
         
         private IEnumerator Start()
         {
